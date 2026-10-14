@@ -1,0 +1,15 @@
+# Never commit source code, models or build output
+*.axmodel
+*.xpp
+*.netmodule
+*.pdb
+*.dll
+*.zip
+*.nupkg
+RyvFnoAI/
+XppMetadata/
+bin/
+Descriptor/
+AxClass/
+TechnicalGuide.md
+.DS_Store

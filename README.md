@@ -12,6 +12,8 @@
 
 ![RyvFnoAI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
 
+📰 **Article:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/)
+
 ### ▶️ 40-second teaser
 
 https://github.com/user-attachments/assets/08118f24-a8e1-4fe5-817c-460053c8ad5b

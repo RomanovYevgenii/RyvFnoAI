@@ -51,7 +51,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
 | **Multi-agent** | Define specialised agents (AP clerk, inventory analyst, month-end closer) with their own instructions and tool sets; agents can delegate to each other |
-| **Remembers** | Persistent per-user memory across sessions ("our fiscal year ends in March") |
+| **Remembers each user** | Per-user memory built into the panel: the agent learns how each person works ("our fiscal year ends in March", "always show amounts in EUR") and uses it in every new session; users can review and delete what it remembers |
+| **Learns your environment in one click** | *Initialize knowledge* scans your environment's metadata, including your own customisations and extensions, and turns it into instructions for the agent, so it understands your system from day one. Only metadata (names of tables, fields, classes) is sent to the model, not business data |
 | **Engineering quality** | Encrypted API keys, sensitive fields excluded from data entities, private chat sessions, retention batch job, 0 compile errors / 0 BP errors |
 
 ## What it covers

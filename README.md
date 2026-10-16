@@ -41,12 +41,13 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 | | RyvFnoAI |
 |---|---|
-| **Runs inside D365FO** | Native X++ model, no middleware server to host |
+| **Runs inside D365FO** | Native X++ model, no middleware server to host; works in cloud and on-premises environments from 10.0.45 |
+| **No extra subscriptions** | No Copilot Studio, Copilot Credits, Microsoft 365 Copilot, Power Platform integration or Dataverse required, just an API key from the model provider you choose |
 | **A side panel, not another screen** | Opens from the settings (gear) menu on any page, next to the form you are working in; the agent can read the open form and the selected record |
 | **Bring your own model** | Anthropic Claude and OpenAI (tested), Azure OpenAI (in validation) — switch providers in one parameter |
 | **Acts, not only answers** | 32 built-in tools: query, look up, count, explore table relations, create / update / delete records, work through a form's own business logic, run multi-step X++ operations, open forms, switch company, export files, generate reports, run batch processing |
 | **Write actions are two-step** | Create, update and delete tools return a preview first; the agent is instructed to execute only after you approve |
-| **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime |
+| **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for query tools (hardening of the raw SQL tool in progress) |
 | **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
 | **Multi-agent** | Define specialised agents (AP clerk, inventory analyst, month-end closer) with their own instructions and tool sets; agents can delegate to each other |
@@ -143,7 +144,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 ## Requirements
 
-- Dynamics 365 Finance & Operations **10.0.x, platform update 50+** (cloud-hosted, sandbox or production via LCS / PPAC)
+- Dynamics 365 Finance & Operations **10.0.45 or later**: cloud (developer, sandbox, production) or on-premises
+- Outbound HTTPS from the AOS to the model provider
 - An API key for Anthropic Claude or OpenAI (both tested), or Azure OpenAI (preview)
 - Optional: an embeddings endpoint (for the knowledge base), MCP servers
 

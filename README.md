@@ -53,6 +53,22 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Remembers** | Persistent per-user memory across sessions ("our fiscal year ends in March") |
 | **Engineering quality** | Encrypted API keys, sensitive fields excluded from data entities, private chat sessions, retention batch job, 0 compile errors / 0 BP errors |
 
+## What it covers
+
+| D365FO area | Status |
+|---|---|
+| Read data, aggregations, metadata, table relations | ✅ Built-in tools |
+| Create / update / delete records with validation | ✅ Two-step (preview, then execute); enabled per user |
+| Work through a form's own business logic | ✅ Built-in tools |
+| Open forms, read the open form and selected record | ✅ Built-in tools |
+| Files: export, reports, downloads | ✅ Built-in tools |
+| Company knowledge (policies, procedures, manuals) | ✅ Knowledge base with semantic search |
+| Posting, workflow submission, number sequences | 🧪 Multi-step operations, guided by the knowledge base |
+| Document attachments (upload / read), SSRS report output | 🗺 Roadmap |
+| Your own tools | ✅ X++ extension point or MCP servers |
+
+✅ available · 🧪 working, being validated · 🗺 planned
+
 ## See it in action
 
 ![Side panel next to a live D365 form](media/visuals/v07-side-panel.jpg)

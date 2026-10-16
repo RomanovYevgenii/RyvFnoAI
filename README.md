@@ -7,7 +7,7 @@
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
 ![Status](https://img.shields.io/badge/status-alpha-orange)
 ![Version](https://img.shields.io/badge/version-1.0.0--alpha-blue)
-![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
+![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
 ![RyvFnoAI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/08118f24-a8e1-4fe5-817c-460053c8ad5b
 
 <sub>Can't see the player? [Download the video](media/teaser/RyvFnoAI_teaser_16x9_music.mp4). Music: "Technology Corporate" by The_Mountain (Pixabay).</sub>
 
-> **Status: Alpha.** The project is functional but still early. The **Anthropic Claude** provider (including Anthropic-compatible APIs) is tested end to end; the **OpenAI** and **Azure OpenAI** providers are implemented and in validation. Feedback is welcome.
+> **Status: Alpha.** The project is functional but still early. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. Development is active, and feedback is welcome.
 
 ---
 
@@ -43,8 +43,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 |---|---|
 | **Runs inside D365FO** | Native X++ model, no middleware server to host |
 | **A side panel, not another screen** | Opens from the settings (gear) menu on any page, next to the form you are working in; the agent can read the open form and the selected record |
-| **Bring your own model** | Anthropic Claude (tested), OpenAI and Azure OpenAI (in validation) — switch providers in one parameter |
-| **Acts, not only answers** | 29 built-in tools: query, look up, count, explore table relations, create / update / delete records, open forms, switch company, export files, generate reports, run batch processing |
+| **Bring your own model** | Anthropic Claude and OpenAI (tested), Azure OpenAI (in validation) — switch providers in one parameter |
+| **Acts, not only answers** | 32 built-in tools: query, look up, count, explore table relations, create / update / delete records, work through a form's own business logic, run multi-step X++ operations, open forms, switch company, export files, generate reports, run batch processing |
 | **Write actions are two-step** | Create, update and delete tools return a preview first; the agent is instructed to execute only after you approve |
 | **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime |
 | **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
@@ -85,7 +85,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 <td><img src="media/09-user-agent-access.jpg" alt="Assigning agents to users"><br><sub><b>User setup</b> — grant agents and tools per user</sub></td>
 </tr>
 <tr>
-<td><img src="media/04-user-setup.jpg" alt="Per-user tool access"><br><sub><b>Tool access</b> — 29 built-in tools, each can be switched on/off per user</sub></td>
+<td><img src="media/04-user-setup.jpg" alt="Per-user tool access"><br><sub><b>Tool access</b> — each built-in tool can be switched on/off per user</sub></td>
 <td><img src="media/05-mcp-server.jpg" alt="MCP server"><br><sub><b>MCP servers</b> — connect, test, sync remote tools</sub></td>
 </tr>
 <tr>
@@ -128,7 +128,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 ## Requirements
 
 - Dynamics 365 Finance & Operations **10.0.x, platform update 50+** (cloud-hosted, sandbox or production via LCS / PPAC)
-- An API key for Anthropic Claude (recommended for the alpha) or OpenAI / Azure OpenAI (preview)
+- An API key for Anthropic Claude or OpenAI (both tested), or Azure OpenAI (preview)
 - Optional: an embeddings endpoint (for the knowledge base), MCP servers
 
 Dependencies on standard models only: ApplicationPlatform, ApplicationFoundation, ApplicationSuite, ApplicationCommon, Directory. No overlayering, no changes to Microsoft code.
@@ -146,6 +146,8 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 ## Roadmap
 
+- Server-side confirmation for every write: the agent proposes, the user approves in the panel, X++ executes
+- Admin-only access by default for the most powerful tools
 - Finance-specific agent packs (AP, AR, month-end close, tax reporting preparation)
 - Admin UI for per-table access lists
 - Teams / Copilot Studio front-end

@@ -34,7 +34,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 "Show me all open sales orders for customer US-001 over 10,000 USD"
 "Why is vendor invoice VI-00451 stuck? Check the workflow and the matching status"
 "Export overdue customer invoices for USMF to Excel, grouped by collector"
-"Create a new customer Contoso Ltd with payment terms Net30"   ← asks to confirm first
+"Create a new customer Contoso Ltd with payment terms Net30"   ← you confirm in the panel
+"Export all tax transactions for USRT to Excel"                 ← runs as a batch job, file appears in the chat
 ```
 
 ## Key characteristics
@@ -45,8 +46,10 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **No extra subscriptions** | No Copilot Studio, Copilot Credits, Microsoft 365 Copilot, Power Platform integration or Dataverse required, just an API key from the model provider you choose |
 | **A side panel, not another screen** | Opens from the settings (gear) menu on any page, next to the form you are working in; the agent can read the open form and the selected record |
 | **Bring your own model** | Anthropic Claude and OpenAI (tested), Azure OpenAI (in validation) — switch providers in one parameter |
-| **Acts, not only answers** | 32 built-in tools: query, look up, count, explore table relations, create / update / delete records, work through a form's own business logic, run multi-step X++ operations, open forms, switch company, export files, generate reports, run batch processing |
-| **Write actions are two-step** | Create, update and delete tools return a preview first; the agent is instructed to execute only after you approve |
+| **Acts, not only answers** | 36 built-in tools: query, look up, count, explore table relations, create / update / delete records (one by one or in bulk), work through a form's own business logic, run multi-step X++ operations, open forms, switch company, export files, generate reports, run batch processing |
+| **Nothing is written without your click** | The agent prepares a change and shows the exact preview in the panel; only your **Confirm** saves it, enforced in X++. If the record changed after the preview, nothing is saved and you get a fresh preview. Bulk changes ("block all customers in group 30") need one confirmation |
+| **Large exports, the standard way** | Exports of hundreds of thousands of rows run as a standard F&O batch job (CSV, zipped CSV, or Excel split across sheets); the file is attached to the chat session and downloaded from the panel. Tested with 270,000+ rows |
+| **Files in the chat** | Attach an image, PDF, CSV or text file to your question (for example, a scanned invoice to check against F&O); reports and exports appear in a *Files* list in the panel |
 | **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for query tools (hardening of the raw SQL tool in progress) |
 | **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
@@ -60,13 +63,14 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | D365FO area | Status |
 |---|---|
 | Read data, aggregations, metadata, table relations | ✅ Built-in tools |
-| Create / update / delete records with validation | ✅ Two-step (preview, then execute); enabled per user |
+| Create / update / delete records with validation, single or bulk | ✅ Confirmed in the panel, enforced in code; enabled per user |
 | Work through a form's own business logic | ✅ Built-in tools |
 | Open forms, read the open form and selected record | ✅ Built-in tools |
-| Files: export, reports, downloads | ✅ Built-in tools |
+| Files: exports (incl. large batch exports), reports, downloads | ✅ Built-in tools |
+| Files you attach to the chat (image, PDF, CSV, text) | ✅ Built-in |
 | Company knowledge (policies, procedures, manuals) | ✅ Knowledge base with semantic search |
 | Posting, workflow submission, number sequences | 🧪 Multi-step operations, guided by the knowledge base |
-| Document attachments (upload / read), SSRS report output | 🗺 Roadmap |
+| Attachments on F&O records (DocuRef upload / read), SSRS report output | 🗺 Roadmap |
 | Your own tools | ✅ X++ extension point or MCP servers |
 
 ✅ available · 🧪 working, being validated · 🗺 planned
@@ -122,7 +126,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 **Data** — natural-language queries across any table the user is allowed to see, record lookup, counts and aggregates, relation exploration, field-level reads.
 
-**Changes** — create, update and delete records through a preview-then-confirm flow; batch processing for bulk operations.
+**Changes** — create, update and delete records, one by one or in bulk, through a preview and a Confirm button in the panel that is enforced in X++; stale previews are rejected.
 
 **Navigation & context** — read the form you have open and the selected record, find menu items and open forms, search labels and metadata, inspect table fields and enum values, read the current form context, switch legal entity.
 
@@ -165,8 +169,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 ## Roadmap
 
-- Server-side confirmation for every write: the agent proposes, the user approves in the panel, X++ executes
-- Admin-only access by default for the most powerful tools
+- Hardening of the raw SQL tool (forced company scope)
 - Finance-specific agent packs (AP, AR, month-end close, tax reporting preparation)
 - Admin UI for per-table access lists
 - Teams / Copilot Studio front-end

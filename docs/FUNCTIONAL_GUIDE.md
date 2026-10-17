@@ -192,7 +192,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. All setup
 - "Update the payment terms on PO-000123 to Net 30"
 - "Delete the draft journal JV-0045"
 
-Data modifications use a preview-then-confirm flow: the agent first shows what will change and executes only after you approve.
+Data modifications are never written by the agent directly. The agent prepares the change and the panel shows a card with the exact preview; only your **Confirm** click saves it (Cancel discards it). The check is done in X++: if the record was changed after the preview, nothing is saved and the agent prepares a fresh preview. Several pending changes can be confirmed or cancelled together.
 
 #### Navigate and Explore
 - "Open the sales order form"

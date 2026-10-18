@@ -146,8 +146,8 @@ Seven ready-made agents, imported through Data management: **Credit & Collection
 
 - Annual subscription per **production environment**, with plans by the number of agent users; sandbox, test and development environments are included
 - No per-user Microsoft Copilot licences, no Copilot Studio or Power Platform capacity
-- AI model usage is billed by your own provider directly, typically cents per question
-- 30-day free evaluation in your sandbox; founding-customer terms for the first pilot customers
+- AI model usage always runs on your own provider key (in evaluation, pilot and production) and is billed by the provider directly: typically from under a cent to a few cents per question, depending on the model
+- 30-day free evaluation licence in your sandbox, with your own model key; founding-customer terms for the first pilot customers
 - Partner programme for Microsoft partners and F&O implementers
 
 Pricing and partner terms on request (see [Contact](#contact)).

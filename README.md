@@ -50,7 +50,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Nothing is written without your click** | The agent prepares a change and shows the exact preview in the panel; only your **Confirm** saves it, enforced in X++. If the record changed after the preview, nothing is saved and you get a fresh preview. Bulk changes ("block all customers in group 30") need one confirmation |
 | **Large exports, the standard way** | Exports of hundreds of thousands of rows run as a standard F&O batch job (CSV, zipped CSV, or Excel split across sheets); the file is attached to the chat session and downloaded from the panel. Tested with 270,000+ rows |
 | **Files in the chat** | Attach an image, PDF, CSV or text file to your question (for example, a scanned invoice to check against F&O); reports and exports appear in a *Files* list in the panel |
-| **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for query tools (hardening of the raw SQL tool in progress) |
+| **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for every data tool, including raw SQL reads (tables in joins, comma lists, subqueries and CTEs are all checked) |
 | **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
 | **Multi-agent** | Define specialised agents (AP clerk, inventory analyst, month-end closer) with their own instructions and tool sets; agents can delegate to each other |
@@ -138,6 +138,20 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 **Integration** — your own X++ tools registered through an extension point; MCP client with Bearer / API-key auth and per-user credentials; a JSON service endpoint for calling the agent from outside D365FO.
 
+## Agent Library
+
+Seven ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant** and **F&O Helpdesk**, each with its reports. See the [Agent Library](docs/AGENT_LIBRARY.md).
+
+## Licensing
+
+- Annual subscription per **production environment**, with plans by the number of agent users; sandbox, test and development environments are included
+- No per-user Microsoft Copilot licences, no Copilot Studio or Power Platform capacity
+- AI model usage is billed by your own provider directly, typically cents per question
+- 30-day free evaluation in your sandbox; founding-customer terms for the first pilot customers
+- Partner programme for Microsoft partners and F&O implementers
+
+Pricing and partner terms on request (see [Contact](#contact)).
+
 ## Security model
 
 - Two duties out of the box: **Admin** (configure everything) and **Clerk** (use the chat).
@@ -166,11 +180,11 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 - [Installation](docs/INSTALLATION.md) — deploy the package, first-time setup
 - [Functional guide](docs/FUNCTIONAL_GUIDE.md) — parameters, users, agents, MCP, knowledge base, batch jobs, troubleshooting
+- [Agent Library](docs/AGENT_LIBRARY.md) — ready-made agents and their reports
 
 ## Roadmap
 
-- Hardening of the raw SQL tool (forced company scope)
-- Finance-specific agent packs (AP, AR, month-end close, tax reporting preparation)
+- More agents in the [Agent Library](docs/AGENT_LIBRARY.md) (tax reporting preparation, bank reconciliation)
 - Admin UI for per-table access lists
 - Teams / Copilot Studio front-end
 - Usage analytics and cost dashboard per user / agent

@@ -1,6 +1,6 @@
 # RyvFnoAI — Agentic AI inside Dynamics 365 Finance & Operations
 
-> Documentation for **RyvFnoAI**, an independent R&D project by Yevgenii Romanov: an AI agent that runs **inside** Dynamics 365 Finance & Operations, reads ERP data, explains it, builds reports and — with your confirmation — creates and updates records.
+> Documentation for **RyvFnoAI** by [RyvSoft](https://ryvsoft.com) (Yevgenii Romanov): an AI agent that runs **inside** Dynamics 365 Finance & Operations, reads ERP data, explains it, builds reports and — with your confirmation — creates and updates records.
 >
 > This repository contains documentation and screenshots only. The software itself is not distributed here.
 
@@ -11,6 +11,8 @@
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
 ![RyvFnoAI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
+
+🌐 **Website:** [ryvsoft.com](https://ryvsoft.com) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
 📰 **Article:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/)
 
@@ -194,7 +196,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 Happy to talk about the project: a live demo, an evaluation build or licensing for your organisation, or a role on a team building agentic AI for Dynamics 365 — including at Microsoft.
 
-Yevgenii Romanov — inbox.odessa@gmail.com · [LinkedIn](https://www.linkedin.com/in/moskra/)
+Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com](https://ryvsoft.com) · [LinkedIn](https://www.linkedin.com/in/moskra/)
 
 ## License
 

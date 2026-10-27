@@ -1,4 +1,4 @@
-# RyvFnoAI — Agentic AI inside Dynamics 365 Finance & Operations
+# RyvFnoAI — AI agent and AI workspace inside Dynamics 365 Finance & Operations (D365 F&O)
 
 > Documentation for **RyvFnoAI** by [RyvSoft](https://ryvsoft.com) (Yevgenii Romanov): an AI agent that runs **inside** Dynamics 365 Finance & Operations, reads ERP data, explains it, builds reports and — with your confirmation — creates and updates records.
 >
@@ -124,6 +124,21 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 </table>
 
 </details>
+
+## AI workspace (preview, new in 1.2)
+
+Build an F&O page by describing each block in plain words — no developer needed. Add a block, write what it should show ("open sales orders with customer and requested ship date, top 20"), check the real rows and accept: the block then runs from live data. Next to the page, the AI Bot answers the follow-up question about the same data.
+
+- **Opens instantly** — a block is prepared once and then runs from data; opening the page costs no AI call.
+- **You see real rows first** — nothing is saved until you have seen and accepted the rows the block will show.
+- **Not everything needs AI** — classic KPI tiles and grids sit on the same page.
+- **Same security as F&O** — every block reads with the user's own permissions and company access, cloud or on-premises.
+
+| A sales desk from four sentences | Then ask the AI Bot about what you see |
+|---|---|
+| ![RyvFnoAI AI workspace in Dynamics 365 F&O: KPI tile, donut, bar chart and grid built from plain-language descriptions](media/13-ai-workspace-sales-desk.jpg) | ![RyvFnoAI AI workspace with the AI Bot side panel answering a question about customer US-003](media/14-ai-workspace-with-bot.jpg) |
+
+*Dev environment, Contoso demo data (USMF).*
 
 ## Capabilities at a glance
 

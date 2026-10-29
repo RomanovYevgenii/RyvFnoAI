@@ -1,6 +1,6 @@
 # RyvFnoAI — AI agent and AI workspace inside Dynamics 365 Finance & Operations (D365 F&O)
 
-> Documentation for **RyvFnoAI** by [RyvSoft](https://ryvsoft.com) (Yevgenii Romanov): an AI agent that runs **inside** Dynamics 365 Finance & Operations, reads ERP data, explains it, builds reports and — with your confirmation — creates and updates records.
+> **RyvFnoAI** by [RyvSoft](https://ryvsoft.com) is the AI agent that lives **inside** Dynamics 365 Finance & Operations: it does the work, not just answers. It runs as X++ on your F&O server, with no portal and no copy of your data, sees only what the signed-in user may see, and saves nothing until the user clicks **Confirm**.
 >
 > This repository contains documentation and screenshots only. The software itself is not distributed here.
 
@@ -14,7 +14,9 @@
 
 🌐 **Website:** [ryvsoft.com](https://ryvsoft.com) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
-📰 **Article:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/)
+🔗 **RyvSoft on LinkedIn:** [linkedin.com/company/ryvsoft](https://www.linkedin.com/company/145366520/)
+
+📰 **Articles:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/) · [Two desktop boxes, one 235B model: a private AI server for on-premises Dynamics 365 F&O](https://www.linkedin.com/pulse/two-desktop-boxes-one-235b-model-what-private-ai-server-romanov-5mjwf/)
 
 ### ▶️ 40-second teaser
 
@@ -25,6 +27,16 @@ https://github.com/user-attachments/assets/08118f24-a8e1-4fe5-817c-460053c8ad5b
 > **Status: Beta (1.2).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
 
 ---
+
+## Why native matters
+
+| | |
+|---|---|
+| **Inside F&O, not next to it** | X++ on the AOS, installed as a standard F&O package. No portal, no middleware, no data copy, no new service for your security team to approve |
+| **Does the work** | The agent prepares the change and shows what, where and why. Nothing is saved until the user clicks **Confirm**, enforced in X++. Seven ready-made agents for real finance and operations work |
+| **Sees only what the user sees** | Every tool call runs with the signed-in user's roles and companies, plus per-user allow-lists for tools and agents |
+| **Cloud or on-premises, your model** | Runs wherever your F&O runs. Pick Anthropic Claude, OpenAI, Azure OpenAI, or a model server in your own network |
+| **Built for partners** | Microsoft partners and F&O implementers add an AI offer to their practice without building one, extend it with their own tools and agents, and keep their implementation services |
 
 ## What it is
 
@@ -173,7 +185,7 @@ Pricing and partner terms on request (see [Contact](#contact)).
 ## Security model
 
 - Two duties out of the box: **Admin** (configure everything) and **Clerk** (use the chat).
-- Per-user setup: which tools and which agents the AI may use for that person (table-level allow-list is enforced at runtime; admin UI for it ships in 1.1).
+- Per-user setup: which tools and which agents the AI may use for that person (table-level allow-list is enforced at runtime; an admin UI for it is on the roadmap).
 - Runtime authorization check before **every** tool call: tool enabled → agent allowed → table allowed.
 - API keys stored encrypted; keys, system prompts and agent instructions are never exposed through OData or DMF.
 - Chat sessions are private — a user can only see their own conversations.
@@ -182,7 +194,7 @@ Pricing and partner terms on request (see [Contact](#contact)).
 ## Requirements
 
 - Dynamics 365 Finance & Operations **10.0.45 or later**: cloud (developer, sandbox, production) or on-premises
-- Outbound HTTPS from the AOS to the model provider
+- Outbound HTTPS from the AOS to the model provider, or a model server in your own network with an Anthropic- or OpenAI-compatible API
 - An API key for Anthropic Claude or OpenAI (both tested), or Azure OpenAI (preview)
 - Optional: an embeddings endpoint (for the knowledge base), MCP servers
 
@@ -204,14 +216,14 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 - More agents in the [Agent Library](docs/AGENT_LIBRARY.md) (tax reporting preparation, bank reconciliation)
 - Admin UI for per-table access lists
-- Teams / Copilot Studio front-end
+- Microsoft Teams front-end
 - Usage analytics and cost dashboard per user / agent
 
 ## Contact
 
-Happy to talk about the project: a live demo, an evaluation build or licensing for your organisation, or a role on a team building agentic AI for Dynamics 365 — including at Microsoft.
+A live demo on Contoso data, a 30-day evaluation in your sandbox, licensing for your organisation, or the partner programme for your F&O practice: get in touch.
 
-Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com](https://ryvsoft.com) · [LinkedIn](https://www.linkedin.com/in/moskra/)
+Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com](https://ryvsoft.com) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/145366520/) · [LinkedIn](https://www.linkedin.com/in/moskra/)
 
 ## License
 

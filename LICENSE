@@ -8,8 +8,9 @@ The RyvFnoAI software (source code, X++ metadata, compiled binaries and
 deployable packages) is proprietary and confidential.
 
 No license is granted to use, copy, modify, distribute, sublicense or sell
-the software except under a separate written agreement (trial, pilot or
-commercial license) signed with the copyright holder.
+the software except under a separate written agreement (evaluation,
+subscription or partner agreement) signed with the copyright holder.
+The terms of that agreement govern the use of the software.
 
 Without such an agreement you may not:
   - install or run the software in any environment;
@@ -20,8 +21,9 @@ Without such an agreement you may not:
 The documentation in this repository may be read and shared unmodified
 for the purpose of evaluating the product.
 
-THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS", WITHOUT WARRANTY OF
-ANY KIND. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE OR DOCUMENTATION.
+THE DOCUMENTATION IN THIS REPOSITORY IS PROVIDED "AS IS", WITHOUT WARRANTY
+OF ANY KIND. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES
+OR OTHER LIABILITY ARISING FROM THE USE OF THIS DOCUMENTATION. Warranties
+and liability for the software are set only by the signed agreement.
 
 Contact for licensing: yevgenii@ryvsoft.com (https://ryvsoft.com)

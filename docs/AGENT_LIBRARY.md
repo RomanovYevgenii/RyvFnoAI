@@ -1,6 +1,6 @@
 # Agent Library
 
-Ready-made RyvFnoAI agents for Dynamics 365 Finance & Operations. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. The library is included in the RyvFnoAI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
+Ready-made RyvSoft AI agents for Dynamics 365 Finance & Operations. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. The library is included in the RyvSoft AI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
 
 Every agent runs under the signed-in user's F&O security: it sees and changes only what the user can see and change. Agents marked **writes** prepare changes as a preview, and nothing is saved until the user clicks **Confirm** in the panel.
 
@@ -15,6 +15,8 @@ All agents are built and tested on the Contoso demo data (company USMF).
 | [Inventory](#inventory) | On hand, shortages, slow-moving items | – |
 | [Period Close Assistant](#period-close-assistant) | Month-end checklist with counts and amounts | – |
 | [F&O Helpdesk](#fo-helpdesk) | "How do I…" answers from the company knowledge base, opens the right form | – |
+
+For administrators the library also includes **[Agent Architect](#agent-architect)**, which helps design an agent for your own process.
 
 ---
 
@@ -94,6 +96,10 @@ A month-end checklist with counts and amounts: unposted journals, received not i
 Answers "how do I…" questions from the company knowledge base first, then from F&O metadata and Microsoft documentation; gives the navigation path and opens the form. Does not change data.
 
 **Try:** "How do I put a customer on hold?" · "What does the Blocked field on the customer mean?"
+
+## Agent Architect
+
+For administrators. Helps design a new agent, or adapt a library agent, for your own environment: the list of tasks it should solve, the steps checked on your data, the instructions, the tools it needs and test questions. It only reads; the administrator reviews the result and creates the agent.
 
 ---
 

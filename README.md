@@ -1,8 +1,10 @@
-# RyvFnoAI — AI agent and AI workspace inside Dynamics 365 Finance & Operations (D365 F&O)
+# RyvSoft AI — AI agent and AI workspace inside Dynamics 365 Finance & Operations (D365 F&O)
 
-> **RyvFnoAI** by [RyvSoft](https://ryvsoft.com) is the AI agent that lives **inside** Dynamics 365 Finance & Operations: it does the work, not just answers. It runs as X++ on your F&O server, with no portal and no copy of your data, sees only what the signed-in user may see, and saves nothing until the user clicks **Confirm**.
+> **RyvSoft AI** by [RyvSoft](https://ryvsoft.com) is the AI agent that lives **inside** Dynamics 365 Finance & Operations: it does the work, not just answers. It runs as X++ on your F&O server, with no portal and no copy of your data, sees only what the signed-in user may see, and saves nothing until the user clicks **Confirm**.
 >
 > This repository contains documentation and screenshots only. The software itself is not distributed here.
+>
+> *RyvSoft AI was previously called RyvFnoAI; this repository keeps its original address.*
 
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
@@ -10,19 +12,21 @@
 ![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
-![RyvFnoAI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
+![RyvSoft AI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
 
-🌐 **Website:** [ryvsoft.com](https://ryvsoft.com) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
+🌐 **Product page:** [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
 🔗 **RyvSoft on LinkedIn:** [linkedin.com/company/ryvsoft](https://www.linkedin.com/company/145366520/)
 
 📰 **Articles:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/) · [Two desktop boxes, one 235B model: a private AI server for on-premises Dynamics 365 F&O](https://www.linkedin.com/pulse/two-desktop-boxes-one-235b-model-what-private-ai-server-romanov-5mjwf/)
 
-### ▶️ 40-second teaser
+### ▶️ See it work (16 seconds)
 
-https://github.com/user-attachments/assets/08118f24-a8e1-4fe5-817c-460053c8ad5b
+A credit controller asks which customers are more than 60 days overdue; the answer comes from live F&O data in the side panel, next to the open form.
 
-<sub>Can't see the player? [Download the video](media/teaser/RyvFnoAI_teaser_16x9_music.mp4). Music: "Technology Corporate" by The_Mountain (Pixabay).</sub>
+[![RyvSoft AI answering a question about overdue customers in the AI Bot side panel of Dynamics 365 F&O](media/demo/ryvsoft-ai-demo-poster.jpg)](https://ryvsoft.com/ryvsoft-ai/#demo)
+
+<sub>Plays on [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/#demo) · [download the video](media/demo/ryvsoft-ai-demo.mp4) · Contoso demo data (USMF).</sub>
 
 > **Status: Beta (1.2).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
 
@@ -33,14 +37,14 @@ https://github.com/user-attachments/assets/08118f24-a8e1-4fe5-817c-460053c8ad5b
 | | |
 |---|---|
 | **Inside F&O, not next to it** | X++ on the AOS, installed as a standard F&O package. No portal, no middleware, no data copy, no new service for your security team to approve |
-| **Does the work** | The agent prepares the change and shows what, where and why. Nothing is saved until the user clicks **Confirm**, enforced in X++. Seven ready-made agents for real finance and operations work |
+| **Does the work** | The agent prepares the change and shows what, where and why. Nothing is saved until the user clicks **Confirm**, enforced in X++. Seven ready-made agents for real finance and operations work, plus Agent Architect to help your admins build your own |
 | **Sees only what the user sees** | Every tool call runs with the signed-in user's roles and companies, plus per-user allow-lists for tools and agents |
 | **Cloud or on-premises, your model** | Runs wherever your F&O runs. Pick Anthropic Claude, OpenAI, Azure OpenAI, or a model server in your own network |
 | **Built for partners** | Microsoft partners and F&O implementers add an AI offer to their practice without building one, extend it with their own tools and agents, and keep their implementation services |
 
 ## What it is
 
-RyvFnoAI is a model for **Microsoft Dynamics 365 Finance & Operations**, built as a standard ISV-style extension, that embeds a tool-using AI agent directly into the D365FO web client. Users talk to their ERP in plain language; the agent decides which tools to call, runs them inside the AOS under the user's own security context, and answers with real data.
+RyvSoft AI is a model for **Microsoft Dynamics 365 Finance & Operations**, built as a standard ISV-style extension, that embeds a tool-using AI agent directly into the D365FO web client. Users talk to their ERP in plain language; the agent decides which tools to call, runs them inside the AOS under the user's own security context, and answers with real data.
 
 It is not a chatbot bolted onto an export. It runs natively in X++, next to your data.
 
@@ -54,7 +58,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 ## Key characteristics
 
-| | RyvFnoAI |
+| | RyvSoft AI |
 |---|---|
 | **Runs inside D365FO** | Native X++ model, no middleware server to host; the whole agent loop runs on the AOS, works in cloud and on-premises environments from 10.0.45 |
 | **Live steps and background runs** | Every step (which tool, which table, what it found) appears in the panel while the agent works; long tasks move to a standard F&O batch job after your confirmation, so you can close the browser and come back to the result |
@@ -66,7 +70,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Large exports, the standard way** | Exports of hundreds of thousands of rows run as a standard F&O batch job (CSV, zipped CSV, or Excel split across sheets); the file is attached to the chat session and downloaded from the panel. Tested with 270,000+ rows |
 | **Files in the chat** | Attach an image, PDF, CSV or text file to your question (for example, a scanned invoice to check against F&O); reports and exports appear in a *Files* list in the panel |
 | **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for every data tool, including raw SQL reads (tables in joins, comma lists, subqueries and CTEs are all checked) |
-| **Extensible by partners and customers** | Build your own tools without changing RyvFnoAI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
+| **Extensible by partners and customers** | Build your own tools without changing RyvSoft AI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
 | **Multi-agent** | Define specialised agents (AP clerk, inventory analyst, month-end closer) with their own instructions and tool sets; agents can delegate to each other |
 | **Remembers each user** | Per-user memory built into the panel: the agent learns how each person works ("our fiscal year ends in March", "always show amounts in EUR") and uses it in every new session; users can review and delete what it remembers |
@@ -93,6 +97,13 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 ## See it in action
 
 ![Side panel next to a live D365 form](media/visuals/v07-side-panel.jpg)
+
+<table>
+<tr>
+<td width="50%"><img src="media/16-confirm-card.jpg" alt="Confirm card: the AI Bot shows the exact change before anything is saved"><br><sub><b>Confirm before any change</b> — the exact field, current and new value; nothing is saved until the user clicks Confirm</sub></td>
+<td width="50%"><img src="media/15-module-menu.jpg" alt="The RyvSoft AI module in the F&O navigation pane"><br><sub><b>The RyvSoft AI module</b> — workspace, setup, periodic tasks and chat sessions in one place</sub></td>
+</tr>
+</table>
 
 <table>
 <tr>
@@ -148,7 +159,7 @@ Build an F&O page by describing each block in plain words — no developer neede
 
 | A sales desk from four sentences | Then ask the AI Bot about what you see |
 |---|---|
-| ![RyvFnoAI AI workspace in Dynamics 365 F&O: KPI tile, donut, bar chart and grid built from plain-language descriptions](media/13-ai-workspace-sales-desk.jpg) | ![RyvFnoAI AI workspace with the AI Bot side panel answering a question about customer US-003](media/14-ai-workspace-with-bot.jpg) |
+| ![RyvSoft AI workspace in Dynamics 365 F&O: KPI tile, donut, bar chart and grid built from plain-language descriptions](media/13-ai-workspace-sales-desk.jpg) | ![RyvSoft AI workspace with the AI Bot side panel answering a question about customer US-003](media/14-ai-workspace-with-bot.jpg) |
 
 *Dev environment, Contoso demo data (USMF).*
 
@@ -170,7 +181,7 @@ Build an F&O page by describing each block in plain words — no developer neede
 
 ## Agent Library
 
-Seven ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant** and **F&O Helpdesk**, each with its reports. See the [Agent Library](docs/AGENT_LIBRARY.md).
+Seven ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant** and **F&O Helpdesk**, each with its reports, plus **Agent Architect**, which helps your administrators design an agent for your own process. See the [Agent Library](docs/AGENT_LIBRARY.md).
 
 ## Licensing
 
@@ -202,7 +213,7 @@ Dependencies on standard models only: ApplicationPlatform, ApplicationFoundation
 
 ## Availability
 
-RyvFnoAI is packaged as a standard **D365FO deployable package** (binary only). It is not publicly distributed; evaluation builds are shared only on request and under a written agreement.
+RyvSoft AI is packaged as a standard **D365FO deployable package** (binary only). It is not publicly distributed; evaluation builds are shared only on request and under a written agreement.
 
 The [installation guide](docs/INSTALLATION.md) describes how a build is deployed and configured.
 
@@ -223,11 +234,11 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 A live demo on Contoso data, a 30-day evaluation in your sandbox, licensing for your organisation, or the partner programme for your F&O practice: get in touch.
 
-Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com](https://ryvsoft.com) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/145366520/) · [LinkedIn](https://www.linkedin.com/in/moskra/)
+Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/145366520/) · [LinkedIn](https://www.linkedin.com/in/moskra/)
 
 ## License
 
 Proprietary software. © 2026 Yevgenii Romanov. All rights reserved.
 This repository contains documentation only. Source code is not published and is not licensed for redistribution, decompilation or reverse engineering. See [LICENSE](LICENSE).
 
-*Microsoft, Dynamics 365 and Azure are trademarks of the Microsoft group of companies. RyvFnoAI is an independent project and is not affiliated with or endorsed by Microsoft.*
+*Microsoft, Dynamics 365 and Azure are trademarks of the Microsoft group of companies. RyvSoft AI is an independent product and is not affiliated with or endorsed by Microsoft.*

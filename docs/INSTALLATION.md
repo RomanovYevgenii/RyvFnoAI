@@ -1,8 +1,8 @@
-# RyvFnoAI — Installation
+# RyvSoft AI — Installation
 
 ## 1. Deploy the package
 
-RyvFnoAI ships as a standard D365FO **deployable package** (`AXDeployablePackage_*.zip`).
+RyvSoft AI ships as a standard D365FO **deployable package** (`AXDeployablePackage_*.zip`).
 
 **Sandbox / production (LCS or Power Platform admin center):**
 1. Upload the package to the Asset library (LCS) or the environment's package deployment page.
@@ -13,9 +13,9 @@ RyvFnoAI ships as a standard D365FO **deployable package** (`AXDeployablePackage
 1. Unpack the zip to a local folder.
 2. From an elevated prompt in that folder run:
    ```
-   AXUpdateInstaller.exe generate -runbookid="RyvFnoAI" -topologyfile="DefaultTopologyData.xml" -servicemodelfile="DefaultServiceModelData.xml" -runbookfile="RyvFnoAI-runbook.xml"
-   AXUpdateInstaller.exe import -runbookfile="RyvFnoAI-runbook.xml"
-   AXUpdateInstaller.exe execute -runbookid="RyvFnoAI"
+   AXUpdateInstaller.exe generate -runbookid="RyvSoftAI" -topologyfile="DefaultTopologyData.xml" -servicemodelfile="DefaultServiceModelData.xml" -runbookfile="RyvSoftAI-runbook.xml"
+   AXUpdateInstaller.exe import -runbookfile="RyvSoftAI-runbook.xml"
+   AXUpdateInstaller.exe execute -runbookid="RyvSoftAI"
    ```
 3. Run a full database synchronization if the runbook did not, then `iisreset`.
 
@@ -30,7 +30,7 @@ Give users one of the duties (via a role of your choice):
 
 ## 3. Configure the provider
 
-**System administration → Setup → RYV AI Bot → AI Bot Parameters**
+**RyvSoft AI → Setup → AI Bot parameters**
 
 - Enable AI Bot = Yes
 - AI Provider: Azure OpenAI / OpenAI / Anthropic Claude
@@ -39,8 +39,8 @@ Give users one of the duties (via a role of your choice):
 
 ## 4. Initialize users
 
-**System administration → Periodic tasks → Initialize AI Bot user setup** — creates the user setup with all tools and agents.
-Then review **User Setup** and narrow down tools and agents per user.
+**RyvSoft AI → Periodic tasks → Initialize AI Bot user setup** — creates the user setup with all tools and agents.
+Then review **RyvSoft AI → Setup → User setup** and narrow down tools and agents per user.
 
 ## 5. Open the chat
 

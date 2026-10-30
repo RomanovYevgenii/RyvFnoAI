@@ -1,8 +1,8 @@
-# RyvFnoAI — Functional Guide
+# RyvSoft AI — Functional Guide
 
 ## Overview
 
-RyvFnoAI adds an AI-powered assistant to Dynamics 365 Finance & Operations. Users interact with the AI through a chat interface embedded in D365FO forms. The AI can query data, create and update records, generate reports, navigate forms, and execute complex multi-step workflows — all controlled by per-user permissions.
+RyvSoft AI adds an AI-powered assistant to Dynamics 365 Finance & Operations. Users interact with the AI through a chat interface embedded in D365FO forms. The AI can query data, create and update records, generate reports, navigate forms, and execute complex multi-step workflows — all controlled by per-user permissions.
 
 ---
 
@@ -28,7 +28,7 @@ RyvFnoAI adds an AI-powered assistant to Dynamics 365 Finance & Operations. User
 
 ### Step 1: AI Bot Parameters
 
-**Navigation:** System administration > Setup > RYV AI Bot > AI Bot Parameters
+**Navigation:** RyvSoft AI > Setup > AI Bot parameters
 
 | Field | Description |
 |-------|-------------|
@@ -55,7 +55,7 @@ RyvFnoAI adds an AI-powered assistant to Dynamics 365 Finance & Operations. User
 
 ### Step 2: User Setup
 
-**Navigation:** System administration > Setup > RYV AI Bot > User Setup
+**Navigation:** RyvSoft AI > Setup > User setup
 
 Each user who will use the AI Bot needs a setup record.
 
@@ -65,7 +65,7 @@ Each user who will use the AI Bot needs a setup record.
 4. **Agents tab** — click **Add agent**, select agents from lookup, enable/disable individually
 5. Table-level restrictions are enforced at runtime (admin UI for the table allow-list is planned for 1.1)
 
-**Alternative:** Run the **Initialize AI Bot user setup** batch job (System administration > Periodic tasks) to auto-create the current user's setup with all tools and agents pre-populated.
+**Alternative:** Run the **Initialize AI Bot user setup** batch job (RyvSoft AI > Periodic tasks) to auto-create the current user's setup with all tools and agents pre-populated.
 
 #### Adding Tools
 
@@ -87,7 +87,7 @@ Each user who will use the AI Bot needs a setup record.
 
 ### Step 3: MCP Servers (Optional)
 
-**Navigation:** System administration > Setup > RYV AI Bot > MCP Servers
+**Navigation:** RyvSoft AI > Setup > MCP servers
 
 MCP (Model Context Protocol) servers extend the AI with external tool capabilities (e.g., Jira, Confluence, GitHub, custom APIs).
 
@@ -103,7 +103,7 @@ MCP tools automatically appear in the User Setup > Add Tool lookup after syncing
 
 ### Step 4: Knowledge Base (Optional)
 
-**Navigation:** System administration > Setup > RYV AI Bot > Knowledge Base
+**Navigation:** RyvSoft AI > Setup > Knowledge base
 
 The knowledge base enables RAG (Retrieval-Augmented Generation) — the AI searches your documents to answer questions with context-specific information.
 
@@ -139,14 +139,14 @@ In AI Bot Parameters, go to the **Semantic Search** tab:
 
 ---
 
-## Extending RyvFnoAI with your own tools
+## Extending RyvSoft AI with your own tools
 
-RyvFnoAI is open for extension. Partners and customers can build company-specific tools, for example "check credit exposure", "find duplicate vendors" or a call to an internal service, **without changing RyvFnoAI code**. There are two ways:
+RyvSoft AI is open for extension. Partners and customers can build company-specific tools, for example "check credit exposure", "find duplicate vendors" or a call to an internal service, **without changing RyvSoft AI code**. There are two ways:
 
 **1. X++ tools in your own model**
-- Implement the RyvFnoAI tool interface: a name, a description, a parameter schema and an execute method.
-- Register the tool through the **published extension point** that RyvFnoAI raises while it builds its tool list.
-- Your tools live in your model, so they survive RyvFnoAI updates.
+- Implement the RyvSoft AI tool interface: a name, a description, a parameter schema and an execute method.
+- Register the tool through the **published extension point** that RyvSoft AI raises while it builds its tool list.
+- Your tools live in your model, so they survive RyvSoft AI updates.
 
 **2. MCP servers, in any language**
 - Build a Model Context Protocol server (C#, Python, Node.js, …) or use an existing one (Jira, Confluence, GitHub, internal APIs).
@@ -158,7 +158,7 @@ The X++ interface reference and a sample tool are provided with the package.
 
 ## Forms Reference
 
-The chat (**AI Bot**) opens from the settings (gear) menu on any page. All setup forms are under **System administration > Setup > RYV AI Bot**:
+The chat (**AI Bot**) opens from the settings (gear) menu on any page. All setup forms are in the **RyvSoft AI** module, under **Setup**:
 
 | Form | Purpose |
 |------|---------|
@@ -229,7 +229,7 @@ Agents are configured by administrators in the Agents form.
 
 ## Agent Configuration
 
-**Navigation:** System administration > Setup > RYV AI Bot > Agents
+**Navigation:** RyvSoft AI > Setup > Agents
 
 | Field | Description |
 |-------|-------------|
@@ -258,7 +258,7 @@ Agents are configured by administrators in the Agents form.
 
 ### Initialize AI Bot User Setup
 
-**Navigation:** System administration > Periodic tasks > Initialize AI Bot user setup
+**Navigation:** RyvSoft AI > Periodic tasks > Initialize AI Bot user setup
 
 - Creates or finds the User Setup record for the current user
 - Populates all missing tools (built-in registry + MCP server tools)
@@ -266,7 +266,7 @@ Agents are configured by administrators in the Agents form.
 
 ### Session Cleanup
 
-**Navigation:** System administration > Periodic tasks > Session cleanup
+**Navigation:** RyvSoft AI > Periodic tasks > AI Bot session cleanup
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|

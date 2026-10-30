@@ -16,7 +16,7 @@
 
 🌐 **Product page:** [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
-🔗 **RyvSoft on LinkedIn:** [linkedin.com/company/ryvsoft](https://www.linkedin.com/company/145366520/)
+🔗 **RyvSoft on LinkedIn:** [linkedin.com/company/ryvsoft](https://www.linkedin.com/company/ryvsoft/)
 
 📰 **Articles:** [I Built an AI Agent That Lives Inside Dynamics 365 Finance & Operations](https://www.linkedin.com/pulse/i-built-ai-agent-lives-inside-dynamics-365-finance-heres-romanov-4ohlf/) · [Two desktop boxes, one 235B model: a private AI server for on-premises Dynamics 365 F&O](https://www.linkedin.com/pulse/two-desktop-boxes-one-235b-model-what-private-ai-server-romanov-5mjwf/)
 
@@ -157,6 +157,12 @@ Build an F&O page by describing each block in plain words — no developer neede
 - **Not everything needs AI** — classic KPI tiles and grids sit on the same page.
 - **Same security as F&O** — every block reads with the user's own permissions and company access, cloud or on-premises.
 
+**▶️ See it work (27 seconds):** open a desk page, add a block by typing *"Bar chart: how many open invoices each customer has"*, check it and save, then ask the AI Bot about customer US-001.
+
+[![RyvSoft AI workspace: a Collections desk page with an invoices grid and a bar chart of open invoices per customer, built from one-sentence descriptions](media/demo/ryvsoft-ai-workspace-poster.jpg)](https://ryvsoft.com/ryvsoft-ai/#workspace)
+
+<sub>Plays on [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/#workspace) · [download the video](media/demo/ryvsoft-ai-workspace.mp4) · Contoso demo data (USMF).</sub>
+
 | A sales desk from four sentences | Then ask the AI Bot about what you see |
 |---|---|
 | ![RyvSoft AI workspace in Dynamics 365 F&O: KPI tile, donut, bar chart and grid built from plain-language descriptions](media/13-ai-workspace-sales-desk.jpg) | ![RyvSoft AI workspace with the AI Bot side panel answering a question about customer US-003](media/14-ai-workspace-with-bot.jpg) |
@@ -234,7 +240,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 A live demo on Contoso data, a 30-day evaluation in your sandbox, licensing for your organisation, or the partner programme for your F&O practice: get in touch.
 
-Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/145366520/) · [LinkedIn](https://www.linkedin.com/in/moskra/)
+Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/ryvsoft/)
 
 ## License
 

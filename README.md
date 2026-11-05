@@ -7,12 +7,15 @@
 > *RyvSoft AI was previously called RyvFnoAI; this repository keeps its original address.*
 
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
+[![Microsoft AppSource](https://img.shields.io/badge/Microsoft%20AppSource-available-0078D4)](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
 ![Version](https://img.shields.io/badge/version-1.2.0--beta-blue)
 ![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
 ![RyvSoft AI: an AI agent that lives inside Dynamics 365 Finance & Operations](media/visuals/v01-cover.jpg)
+
+🛒 **Now available on Microsoft AppSource:** [RyvSoft AI on Microsoft AppSource](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 
 🌐 **Product page:** [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
@@ -219,7 +222,9 @@ Dependencies on standard models only: ApplicationPlatform, ApplicationFoundation
 
 ## Availability
 
-RyvSoft AI is packaged as a standard **D365FO deployable package** (binary only). It is not publicly distributed; evaluation builds are shared only on request and under a written agreement.
+RyvSoft AI is available on [Microsoft AppSource](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai); use **Contact me** on the listing to request a demo or an evaluation.
+
+It is packaged as a standard **D365FO deployable package** (binary only). It is not publicly distributed; evaluation builds are shared only on request and under a written agreement.
 
 The [installation guide](docs/INSTALLATION.md) describes how a build is deployed and configured.
 
@@ -240,7 +245,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 A live demo on Contoso data, a 30-day evaluation in your sandbox, licensing for your organisation, or the partner programme for your F&O practice: get in touch.
 
-Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/ryvsoft/)
+Yevgenii Romanov, RyvSoft — [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com) · [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [Microsoft AppSource](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai) · [RyvSoft on LinkedIn](https://www.linkedin.com/company/ryvsoft/)
 
 ## License
 

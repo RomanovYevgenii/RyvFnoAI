@@ -19,7 +19,7 @@ RyvSoft AI adds an AI-powered assistant to Dynamics 365 Finance & Operations. Us
 | Provider | Description |
 |----------|-------------|
 | **Azure OpenAI** | Microsoft-hosted, deployment-based, supports API versioning |
-| **OpenAI** | Direct OpenAI API access (GPT-4o, GPT-4, etc.) |
+| **OpenAI** | Direct OpenAI API access with your own key (any current GPT model) |
 | **Anthropic Claude** | Claude API with optional workspace support |
 
 ---
@@ -36,7 +36,7 @@ RyvSoft AI adds an AI-powered assistant to Dynamics 365 Finance & Operations. Us
 | AI Provider | Select: Azure OpenAI, OpenAI, or Anthropic Claude |
 | Endpoint URL | Provider API base URL |
 | API Key | Provider API key (stored encrypted) |
-| Model ID | Model identifier (e.g., `gpt-4o`, `claude-sonnet-4-20250514`) |
+| Model ID | Model identifier as your provider names it (e.g., `claude-sonnet-5-5`, `claude-opus-5-5`, or the GPT model name from your OpenAI account) |
 | Max Tokens | Maximum tokens per AI response |
 | Compact after messages | Number of messages before context compaction (0 = disabled, default 20) |
 
@@ -169,6 +169,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. All setup
 | **MCP Servers** | Configure external MCP server connections |
 | **Knowledge Base** | Manage and index documents for RAG |
 | **Chat Sessions** | View and manage conversation history (filtered to current user) |
+| **AI Bot schedules** | Run an agent on a schedule or on demand through the batch queue (see [Scheduled agent runs](#scheduled-agent-runs)) |
 
 ---
 
@@ -263,6 +264,30 @@ Agents are configured by administrators in the Agents form.
 - Creates or finds the User Setup record for the current user
 - Populates all missing tools (built-in registry + MCP server tools)
 - Populates all missing agents
+
+### Scheduled agent runs
+
+**Navigation:** RyvSoft AI > Setup > AI Bot schedules
+
+A schedule runs one agent with one instruction in one company, through the batch queue, with nobody in the chat. Each run creates a normal AI Bot session that you can open and continue.
+
+| Field | Description |
+|-------|-------------|
+| Name | What the run is for, e.g. "Morning collections call list" |
+| Agent ID | The agent that does the work, with its own instructions and tools |
+| Instruction | The task in plain words, as you would type it in the chat |
+| Company | The company the run works in |
+| Mode | **Read-only** — the agent reports and never changes data; proposed changes are listed in the answer. **Propose** — the agent prepares changes as Confirm cards and stops; nothing is written until a person confirms them |
+| Enabled | Switches the schedule on or off |
+| Notify | The user who gets a notification with a link to the session (the owner by default) |
+
+Buttons:
+- **Recurrence** — when the schedule runs (for example, weekdays at 08:00).
+- **Run now** — queue one run at once.
+- **History** — the runs of this schedule, with status and the number of proposals.
+- **Open session** — open the session of the selected run in the AI Bot.
+
+A scheduled run gets the same rights as the owner in the chat: the same roles, company access and AI Bot user setup (tools, agents, tables). It can never write without a Confirm.
 
 ### Session Cleanup
 

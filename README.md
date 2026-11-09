@@ -9,7 +9,7 @@
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
 [![Microsoft AppSource](https://img.shields.io/badge/Microsoft%20AppSource-available-0078D4)](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
-![Version](https://img.shields.io/badge/version-1.2.0--beta-blue)
+![Version](https://img.shields.io/badge/version-1.3.0--beta-blue)
 ![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
@@ -31,7 +31,7 @@ A credit controller asks which customers are more than 60 days overdue; the answ
 
 <sub>Plays on [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/#demo) · [download the video](media/demo/ryvsoft-ai-demo.mp4) · Contoso demo data (USMF).</sub>
 
-> **Status: Beta (1.2).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
+> **Status: Beta (1.3).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.3: scheduled agent runs (an agent works through the batch queue on a schedule or on demand, reports in the morning and leaves any change waiting for one Confirm), linked workspace widgets (select a row in one block, the linked blocks follow), and a clear answer when the admin has switched a tool off for an agent. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
 
 ---
 
@@ -151,13 +151,14 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 
 </details>
 
-## AI workspace (preview, new in 1.2)
+## AI workspace (preview)
 
 Build an F&O page by describing each block in plain words — no developer needed. Add a block, write what it should show ("open sales orders with customer and requested ship date, top 20"), check the real rows and accept: the block then runs from live data. Next to the page, the AI Bot answers the follow-up question about the same data.
 
 - **Opens instantly** — a block is prepared once and then runs from data; opening the page costs no AI call.
 - **You see real rows first** — nothing is saved until you have seen and accepted the rows the block will show.
 - **Not everything needs AI** — classic KPI tiles and grids sit on the same page.
+- **Linked blocks (new in 1.3)** — select a row in one block and the blocks linked to it show that record's data (master–detail).
 - **Same security as F&O** — every block reads with the user's own permissions and company access, cloud or on-premises.
 
 **▶️ See it work (27 seconds):** open a desk page, add a block by typing *"Bar chart: how many open invoices each customer has"*, check it and save, then ask the AI Bot about customer US-001.

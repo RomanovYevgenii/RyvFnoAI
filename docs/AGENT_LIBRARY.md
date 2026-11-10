@@ -1,6 +1,6 @@
 # Agent Library
 
-Ready-made RyvSoft AI agents for Dynamics 365 Finance & Operations. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. The library is included in the RyvSoft AI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
+Ready-made RyvSoft AI agents for Dynamics 365 Finance & Operations. The package for release 1.4 holds 16 agents: eight for finance and operations work, Agent Architect, and seven that work with the AI workspace and AI Reporting. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. The library is included in the RyvSoft AI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
 
 Every agent runs under the signed-in user's F&O security: it sees and changes only what the user can see and change. Agents marked **writes** prepare changes as a preview, and nothing is saved until the user clicks **Confirm** in the panel.
 
@@ -14,9 +14,10 @@ All agents are built and tested on the Contoso demo data (company USMF).
 | [Sales Order Desk](#sales-order-desk) | Order status, late and held orders, replies to customers | – |
 | [Inventory](#inventory) | On hand, shortages, slow-moving items | – |
 | [Period Close Assistant](#period-close-assistant) | Month-end checklist with counts and amounts | – |
+| [Ledger Trail & Reconciliation](#ledger-trail--reconciliation) | What one voucher posted; subledger against ledger | – |
 | [F&O Helpdesk](#fo-helpdesk) | "How do I…" answers from the company knowledge base, opens the right form | – |
 
-For administrators the library also includes **[Agent Architect](#agent-architect)**, which helps design an agent for your own process.
+For administrators the library also includes **[Agent Architect](#agent-architect)**, which helps design an agent for your own process, and the **[AI workspace and AI Reporting agents](#ai-workspace-and-ai-reporting-agents)**.
 
 ---
 
@@ -91,6 +92,12 @@ A month-end checklist with counts and amounts: unposted journals, received not i
 | Received not invoiced | PO, Vendor, Item, Received qty, Value, Receipt date | Excel |
 | Delivered not invoiced | Order, Customer, Item, Delivered qty, Value, Delivery date | Excel |
 
+## Ledger Trail & Reconciliation
+
+Shows everything one voucher posted (general ledger, customer, vendor, inventory and tax) and reconciles the customer and vendor subledgers with the general ledger voucher by voucher. Read-only.
+
+**Try:** "Show me everything this voucher posted." · "Reconcile accounts receivable with the general ledger."
+
 ## F&O Helpdesk
 
 Answers "how do I…" questions from the company knowledge base first, then from F&O metadata and Microsoft documentation; gives the navigation path and opens the form. Does not change data.
@@ -100,6 +107,18 @@ Answers "how do I…" questions from the company knowledge base first, then from
 ## Agent Architect
 
 For administrators. Helps design a new agent, or adapt a library agent, for your own environment: the list of tasks it should solve, the steps checked on your data, the instructions, the tools it needs and test questions. It only reads; the administrator reviews the result and creates the agent.
+
+## AI workspace and AI Reporting agents
+
+| Agent | What it does | Writes |
+|---|---|---|
+| **AI Block Setup** | Prepares AI blocks in the [AI workspace](FUNCTIONAL_GUIDE.md#ai-workspace-preview); select it on every AI block | The block's stored query |
+| **AI Workspace Designer** | Designs and reviews AI workspace pages | – |
+| **AI Reporting Designer** | Explains, debugs and runs [AI Reporting](FUNCTIONAL_GUIDE.md#ai-reporting-preview) reports | Report setup, with Confirm |
+| **AI Reporting Assistant** | Builds an AI Reporting report end to end, for example an e-invoice format | Report setup, with Confirm |
+| **Report field finder**, **Report SQL tester**, **Report run reader** | Read-only helpers the AI Reporting Designer asks for exact tables and fields, SQL tests and run messages | – |
+
+A user of the AI Reporting Designer also needs access to its three helpers in their AI Bot user setup.
 
 ---
 

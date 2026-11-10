@@ -9,7 +9,7 @@
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
 [![Microsoft AppSource](https://img.shields.io/badge/Microsoft%20AppSource-available-0078D4)](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
-![Version](https://img.shields.io/badge/version-1.3.0--beta-blue)
+![Version](https://img.shields.io/badge/version-1.4.0--beta-blue)
 ![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
@@ -31,7 +31,7 @@ A credit controller asks which customers are more than 60 days overdue; the answ
 
 <sub>Plays on [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/#demo) · [download the video](media/demo/ryvsoft-ai-demo.mp4) · Contoso demo data (USMF).</sub>
 
-> **Status: Beta (1.3).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.3: scheduled agent runs (an agent works through the batch queue on a schedule or on demand, reports in the morning and leaves any change waiting for one Confirm), linked workspace widgets (select a row in one block, the linked blocks follow), and a clear answer when the admin has switched a tool off for an agent. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
+> **Status: Beta (1.4).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.4: AI Reporting (preview), which fills your own Excel, XML, JSON, CSV and text templates with F&O data and adds an **AI Reports** button to the forms whose records feed a report, agents in the Agent Library that help build workspace pages and reports, and the [External API](#external-api), so your own systems can ask the agent the way your people do. New in 1.3: scheduled agent runs (an agent works through the batch queue on a schedule or on demand, reports in the morning and leaves any change waiting for one Confirm), linked workspace widgets (select a row in one block, the linked blocks follow), and a clear answer when the admin has switched a tool off for an agent. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
 
 ---
 
@@ -40,7 +40,7 @@ A credit controller asks which customers are more than 60 days overdue; the answ
 | | |
 |---|---|
 | **Inside F&O, not next to it** | X++ on the AOS, installed as a standard F&O package. No portal, no middleware, no data copy, no new service for your security team to approve |
-| **Does the work** | The agent prepares the change and shows what, where and why. Nothing is saved until the user clicks **Confirm**, enforced in X++. Seven ready-made agents for real finance and operations work, plus Agent Architect to help your admins build your own |
+| **Does the work** | The agent prepares the change and shows what, where and why. Nothing is saved until the user clicks **Confirm**, enforced in X++. Eight ready-made agents for real finance and operations work, Agent Architect to help your admins build your own, and agents that help build workspace pages and reports |
 | **Sees only what the user sees** | Every tool call runs with the signed-in user's roles and companies, plus per-user allow-lists for tools and agents |
 | **Cloud or on-premises, your model** | Runs wherever your F&O runs. Pick Anthropic Claude, OpenAI, Azure OpenAI, or a model server in your own network |
 | **Built for partners** | Microsoft partners and F&O implementers add an AI offer to their practice without building one, extend it with their own tools and agents, and keep their implementation services |
@@ -71,7 +71,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Acts, not only answers** | 38 built-in tools: query, look up, count, explore table relations, create / update / delete records (one by one or in bulk), work through a form's own business logic, run multi-step X++ operations, open forms, switch company, export files, generate reports, run batch processing |
 | **Nothing is written without your click (by default)** | Record, form and class tools prepare a change and show the exact preview in the panel; only your **Confirm** saves it, enforced in X++. The live-form recorder is off by default. If the record changed after the preview, nothing is saved and you get a fresh preview. Bulk changes ("block all customers in group 30") need one confirmation |
 | **Large exports, the standard way** | Exports of hundreds of thousands of rows run as a standard F&O batch job (CSV, zipped CSV, or Excel split across sheets); the file is attached to the chat session and downloaded from the panel. Tested with 270,000+ rows |
-| **Files in the chat** | Attach an image, PDF, CSV or text file to your question (for example, a scanned invoice to check against F&O); reports and exports appear in a *Files* list in the panel |
+| **Files and voice in the chat** | Attach an image, PDF, Word or Excel file, or a text file such as CSV, JSON or XML, to your question (for example, a scanned invoice to check against F&O); long files are read in parts. Speak instead of typing with the microphone button. Reports and exports appear in a *Files* list in the panel |
 | **Granular control** | Per-user allow-lists for **tools** and **agents** on top of standard D365FO role security; table-level restrictions enforced at runtime for every data tool, including raw SQL reads (tables in joins, comma lists, subqueries and CTEs are all checked) |
 | **Extensible by partners and customers** | Build your own tools without changing RyvSoft AI code: in X++ in your own model, registered through a published extension point, or as an MCP server in any language (Jira, Confluence, GitHub, internal APIs work the same way). Custom and remote tools appear next to the built-in ones and follow the same per-user permissions |
 | **Knows your company** | Built-in knowledge base with semantic search (RAG): upload policies, procedures, manuals; the agent cites them in answers |
@@ -89,7 +89,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | Work through a form's own business logic | ✅ Built-in tools |
 | Open forms, read the open form and selected record | ✅ Built-in tools |
 | Files: exports (incl. large batch exports), reports, downloads | ✅ Built-in tools |
-| Files you attach to the chat (image, PDF, CSV, text) | ✅ Built-in |
+| Files you attach to the chat (image, PDF, Word, Excel, CSV and other text files) | ✅ Built-in |
+| Reports in your own templates (Excel, XML, JSON, CSV, text), run from the record's form | 🧪 AI Reporting (preview) |
 | Company knowledge (policies, procedures, manuals) | ✅ Knowledge base with semantic search |
 | Posting, workflow submission, number sequences | 🧪 Multi-step operations, guided by the knowledge base |
 | Attachments on F&O records (DocuRef upload / read), SSRS report output | 🗺 Roadmap |
@@ -160,6 +161,7 @@ Build an F&O page by describing each block in plain words — no developer neede
 - **Not everything needs AI** — classic KPI tiles and grids sit on the same page.
 - **Linked blocks (new in 1.3)** — select a row in one block and the blocks linked to it show that record's data (master–detail).
 - **Same security as F&O** — every block reads with the user's own permissions and company access, cloud or on-premises.
+- **Preview switches** — AI blocks and action buttons are preview features; an administrator turns them on in the AI Bot parameters.
 
 **▶️ See it work (27 seconds):** open a desk page, add a block by typing *"Bar chart: how many open invoices each customer has"*, check it and save, then ask the AI Bot about customer US-001.
 
@@ -172,6 +174,16 @@ Build an F&O page by describing each block in plain words — no developer neede
 | ![RyvSoft AI workspace in Dynamics 365 F&O: KPI tile, donut, bar chart and grid built from plain-language descriptions](media/13-ai-workspace-sales-desk.jpg) | ![RyvSoft AI workspace with the AI Bot side panel answering a question about customer US-003](media/14-ai-workspace-with-bot.jpg) |
 
 *Dev environment, Contoso demo data (USMF).*
+
+## AI Reporting (preview)
+
+Fill your own file templates with F&O data, without a developer: Excel workbooks, XML, JSON, CSV and text files.
+
+- **Data, template, layout** — choose the tables (or a data provider or SQL query), upload the template, and say which value goes into each cell or element; **Match by name** fills every cell whose name matches a column or question.
+- **Draft, test, publish** — the Readiness tab shows what is missing; preview the report on a record, then publish the version people and agents run.
+- **Derived reports** — a variant takes its whole format from another report and keeps only what it changes.
+- **Run it where the record is** — an **AI Reports** button appears on the F&O forms whose records feed a report and runs the published report for the selected record; every run is kept with its file.
+- **Help in the chat** — the AI Reporting agents of the Agent Library explain, debug and build reports.
 
 ## Capabilities at a glance
 
@@ -204,7 +216,7 @@ See [External API](docs/EXTERNAL_API.md).
 
 ## Agent Library
 
-Seven ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant** and **F&O Helpdesk**, each with its reports, plus **Agent Architect**, which helps your administrators design an agent for your own process. See the [Agent Library](docs/AGENT_LIBRARY.md).
+Sixteen ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant**, **Ledger Trail & Reconciliation** and **F&O Helpdesk**, each with its reports; **Agent Architect**, which helps your administrators design an agent for your own process; and agents for the AI workspace and AI Reporting (**AI Block Setup**, **AI Workspace Designer**, **AI Reporting Designer**, **AI Reporting Assistant** and three read-only helpers). See the [Agent Library](docs/AGENT_LIBRARY.md).
 
 ## Licensing
 
@@ -218,10 +230,10 @@ Pricing and partner terms on request (see [Contact](#contact)).
 
 ## Security model
 
-- Two duties out of the box: **Admin** (configure everything) and **Clerk** (use the chat).
+- Six duties out of the box: **AI Bot administrator** (configure everything), **AI Bot clerk** (use the chat, own setup and workspace pages), **View the AI workspace**, **Maintain AI Reporting definitions**, **Run AI Reporting reports** and **AI Bot external access**.
 - Per-user setup: which tools and which agents the AI may use for that person (table-level allow-list is enforced at runtime; an admin UI for it is on the roadmap).
 - Runtime authorization check before **every** tool call: tool enabled → agent allowed → table allowed.
-- API keys stored encrypted; keys, system prompts and agent instructions are never exposed through OData or DMF.
+- API keys stored encrypted; keys and system prompts are never exposed through OData or DMF. Agent instructions are exported only through the agents entity, which is for administrators.
 - Chat sessions are private — a user can only see their own conversations.
 - The agent always acts as the signed-in user; it cannot exceed that user's D365FO permissions.
 

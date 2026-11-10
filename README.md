@@ -187,7 +187,20 @@ Build an F&O page by describing each block in plain words — no developer neede
 
 **Knowledge** — documents from manual text, files or URLs; chunking, embeddings, cosine-similarity retrieval; auto-retrieve per message or on demand.
 
-**Integration** — your own X++ tools registered through an extension point; MCP client with Bearer / API-key auth and per-user credentials; a JSON service endpoint for calling the agent from outside D365FO.
+**Integration** — your own X++ tools registered through an extension point; MCP client with Bearer / API-key auth and per-user credentials; a JSON web service for calling the agent from your own systems (see [External API](#external-api)).
+
+## External API
+
+Your portal, service desk, chatbot or workflow tool can ask RyvSoft AI the same questions your people ask in F&O, through a standard F&O web service secured by Microsoft Entra ID.
+
+- **Answers, files and follow-ups**: the answer, what the agent did, and the files it produced; a follow-up question continues the same conversation.
+- **Now or in the background**: wait for the answer, follow the agent step by step, or run a long task as an F&O batch job.
+- **Same security as the chat**: every call runs with the permissions of one F&O user. The API is off until an administrator turns it on.
+- **No silent changes**: read-only by default; if allowed, the agent only proposes a change and a person confirms it in F&O.
+
+![A system sends a question as JSON; RyvSoft AI answers from live F&O data](media/17-external-api.jpg)
+
+See [External API](docs/EXTERNAL_API.md).
 
 ## Agent Library
 
@@ -234,6 +247,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 - [Installation](docs/INSTALLATION.md) — deploy the package, first-time setup
 - [Functional guide](docs/FUNCTIONAL_GUIDE.md) — parameters, users, agents, MCP, knowledge base, batch jobs, troubleshooting
 - [Agent Library](docs/AGENT_LIBRARY.md) — ready-made agents and their reports
+- [External API](docs/EXTERNAL_API.md) — call the agent from your own systems
 
 ## Roadmap
 

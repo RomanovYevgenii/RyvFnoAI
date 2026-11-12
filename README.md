@@ -31,7 +31,7 @@ A credit controller asks which customers are more than 60 days overdue; the answ
 
 <sub>Plays on [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/#demo) · [download the video](media/demo/ryvsoft-ai-demo.mp4) · Contoso demo data (USMF).</sub>
 
-> **Status: Beta (1.4).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in 1.4: AI Reporting (preview), which fills your own Excel, XML, JSON, CSV and text templates with F&O data and adds an **AI Reports** button to the forms whose records feed a report, agents in the Agent Library that help build workspace pages and reports, and the [External API](#external-api), so your own systems can ask the agent the way your people do. New in 1.3: scheduled agent runs (an agent works through the batch queue on a schedule or on demand, reports in the morning and leaves any change waiting for one Confirm), linked workspace widgets (select a row in one block, the linked blocks follow), and a clear answer when the admin has switched a tool off for an agent. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
+> **Status: Beta (1.4).** The agent loop runs entirely on the F&O server: steps are shown live while it works, long tasks can move to a background batch job so the browser can be closed, and every change is confirmed in X++. New in the latest 1.4 update: the [agent activity log](docs/RELEASE_NOTES.md), which records every session, so an administrator sees who asked the agent what, what it did and what changed, and knowledge base access per user. New in 1.4: AI Reporting (preview), which fills your own Excel, XML, JSON, CSV and text templates with F&O data and adds an **AI Reports** button to the forms whose records feed a report, agents in the Agent Library that help build workspace pages and reports, and the [External API](#external-api), so your own systems can ask the agent the way your people do. New in 1.3: scheduled agent runs (an agent works through the batch queue on a schedule or on demand, reports in the morning and leaves any change waiting for one Confirm), linked workspace widgets (select a row in one block, the linked blocks follow), and a clear answer when the admin has switched a tool off for an agent. New in 1.2: a background job that changes data runs from a plan the user approves before launch, form actions run on the server without opening the form in the user's browser, and the AI workspace (preview) lets you build your own pages from F&O data. The **Anthropic Claude** (including Anthropic-compatible APIs) and **OpenAI** providers are tested end to end; the **Azure OpenAI** provider is implemented and in validation. We are onboarding the first pilot customers — see [Licensing](#licensing).
 
 ---
 
@@ -78,6 +78,7 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | **Multi-agent** | Define specialised agents (AP clerk, inventory analyst, month-end closer) with their own instructions and tool sets; agents can delegate to each other |
 | **Remembers each user** | Per-user memory built into the panel: the agent learns how each person works ("our fiscal year ends in March", "always show amounts in EUR") and uses it in every new session; users can review and delete what it remembers |
 | **Learns your environment in one click** | *Initialize knowledge* scans your environment's metadata, including your own customisations and extensions, and turns it into instructions for the agent, so it understands your system from day one. Only metadata (names of tables, fields, classes) is sent to the model, not business data |
+| **See who did what** | The agent activity log records every request, tool call, denied tool and proposed change with its outcome (confirmed, cancelled, rejected, failed, expired), for chats, scheduled runs, External API calls and the AI workspace. Administrators filter by user, agent, company or event, open the whole session, and jump to the changed record |
 | **Engineering quality** | Encrypted API keys, sensitive fields excluded from data entities, private chat sessions, retention batch job, 0 compile errors / 0 BP errors |
 
 ## What it covers
@@ -231,10 +232,11 @@ Pricing and partner terms on request (see [Contact](#contact)).
 ## Security model
 
 - Six duties out of the box: **AI Bot administrator** (configure everything), **AI Bot clerk** (use the chat, own setup and workspace pages), **View the AI workspace**, **Maintain AI Reporting definitions**, **Run AI Reporting reports** and **AI Bot external access**.
-- Per-user setup: which tools and which agents the AI may use for that person (table-level allow-list is enforced at runtime; an admin UI for it is on the roadmap).
+- Per-user setup: which tools, which agents and which knowledge base documents the AI may use for that person (table-level allow-list is enforced at runtime; an admin UI for it is on the roadmap).
 - Runtime authorization check before **every** tool call: tool enabled → agent allowed → table allowed.
 - API keys stored encrypted; keys and system prompts are never exposed through OData or DMF. Agent instructions are exported only through the agents entity, which is for administrators.
 - Chat sessions are private — a user can only see their own conversations.
+- Agent activity log for administrators: who asked what, which tools ran, which were denied, and every change with its outcome. Retention is set in the parameters and applied by a batch job.
 - The agent always acts as the signed-in user; it cannot exceed that user's D365FO permissions.
 
 ## Requirements
@@ -260,6 +262,7 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 - [Functional guide](docs/FUNCTIONAL_GUIDE.md) — parameters, users, agents, MCP, knowledge base, batch jobs, troubleshooting
 - [Agent Library](docs/AGENT_LIBRARY.md) — ready-made agents and their reports
 - [External API](docs/EXTERNAL_API.md) — call the agent from your own systems
+- [Release notes](docs/RELEASE_NOTES.md) — what's new and the upgrade steps
 
 ## Roadmap
 

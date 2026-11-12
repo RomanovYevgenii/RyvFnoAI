@@ -45,7 +45,9 @@ Add the duties to roles of your choice:
 ## 4. Initialize users
 
 **RyvSoft AI → Periodic tasks → Initialize AI Bot user setup** — creates the user setup with all tools and agents.
-Then review **RyvSoft AI → Setup → User setup** and narrow down tools and agents per user.
+Then review **RyvSoft AI → Setup → User setup** and narrow down tools, agents and knowledge base documents per user.
+
+The same job switches on the agent activity log with its defaults (log on, request text stored, 365 days) if nobody has set it yet. Schedule **RyvSoft AI → Periodic tasks → Clean up agent activity log** as a recurring batch job so the log is kept to its retention. Upgrading from an earlier build? See the [release notes](RELEASE_NOTES.md).
 
 To give users the ready-made agents, import the [Agent Library](AGENT_LIBRARY.md) package through Data management first.
 
@@ -55,4 +57,4 @@ Run **Refresh label index** (**AI Bot parameters → Additional configuration**)
 
 On any page, open the **settings (gear) menu → AI Bot**. The chat opens as a side panel next to your form; pick an agent and start typing.
 
-Optional next steps: MCP servers, Knowledge Base, custom agents, scheduled agent runs, AI Reporting, session clean-up batch job — see the [Functional guide](FUNCTIONAL_GUIDE.md).
+Optional next steps: MCP servers, Knowledge Base, custom agents, scheduled agent runs, AI Reporting, session clean-up batch job, agent activity log — see the [Functional guide](FUNCTIONAL_GUIDE.md).

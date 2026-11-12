@@ -45,6 +45,8 @@ The **Connection** tab also has **Test Connection** to check the provider settin
 
 The **Knowledge** tab holds **Initialize Knowledge**, which scans your environment's metadata into instructions for the agent (with **Include standard models in scan** to cover Microsoft models too). The **Additional configuration** tab holds **Enable preview widget types** (see [AI workspace](#ai-workspace-preview)), **Refresh label index** (see [Label index](#step-5-label-index)) and the switches for the [External API](EXTERNAL_API.md).
 
+The **Activity log** tab sets the [agent activity log](#agent-activity-log): **Log agent activity**, **Store request text** (tell your employees that their requests are logged) and **Retention (days)** (default 365; 0 = keep for ever).
+
 **Azure OpenAI additional fields:**
 
 | Field | Description |
@@ -68,7 +70,8 @@ Each user who will use the AI Bot needs a setup record.
 2. Set **Enabled** = Yes
 3. **Tools tab** — click **Add tool**, select tools from lookup, enable/disable individually
 4. **Agents tab** — click **Add agent**, select agents from lookup, enable/disable individually
-5. Table-level restrictions are enforced at runtime (an admin UI for the table allow-list is planned)
+5. **Knowledge tab** — the knowledge base documents this user may use. Empty list: every document. With rows: only the enabled ones; a document added later must be added here. **Initialize documents** adds every document the user does not have yet
+6. Table-level restrictions are enforced at runtime (an admin UI for the table allow-list is planned)
 
 Use **Enable selected** / **Disable selected** to switch several tools at once. **Initialize Tools** and **Initialize Agents** in the action pane reset the user's tool or agent list to everything available.
 
@@ -186,6 +189,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. Everythin
 | **Reports** | AI Reporting (Preview) | Reports that fill your own templates (see [AI Reporting](#ai-reporting-preview)); data sets, templates and macros are under **Advanced** |
 | **Runs** | Inquiries and reports | Every AI Reporting run with the file it produced |
 | **Chat sessions** | Inquiries and reports | Your conversation history |
+| **Agent activity log** | Setup | Who did what through the agent, for all users (administrators); see [Agent activity log](#agent-activity-log) |
 | **AI Bot parameters** | Setup | Global configuration: provider, API keys, RAG settings |
 | **Agents** | Setup | Define AI personas with custom instructions and tool permissions |
 | **AI Bot schedules** | Setup | Run an agent on a schedule or on demand through the batch queue (see [Scheduled agent runs](#scheduled-agent-runs)) |
@@ -255,6 +259,26 @@ Agents are configured by administrators in the Agents form. Each user can pick t
 - Sessions started by your [schedules](#scheduled-agent-runs) or through the [External API](EXTERNAL_API.md) are saved the same way
 - **RyvSoft AI > Inquiries and reports > Chat sessions** lists your sessions, newest first; **Activate** opens the selected session in the AI Bot, **Delete** removes it
 - Old sessions can be cleaned up via the Session Cleanup batch job
+
+### Agent activity log
+
+**Navigation:** RyvSoft AI > Setup > Agent activity log (administrators)
+
+Every session is logged, whatever started it: the chat, a schedule, the External API or the AI workspace. One row per event:
+
+| Event type | When |
+|------------|------|
+| Request | A user (or a schedule or external system) asked the agent something |
+| Tool call | The agent ran a tool; with its duration and the tables it used |
+| Tool denied | The agent wanted a tool it is not allowed to use; with the reason |
+| Change proposed | The agent prepared a change for a Confirm |
+| Change confirmed / cancelled / rejected / failed / expired | What happened to that change |
+
+- Columns: user, session title and ID, agent, calling agent, schedule, source, company, event type, tool, tables, summary, records, duration. A change row's summary shows the changed fields, for example `CustGroup = 30, Name = Wholesale`; for a delete, only the record's key.
+- Filters: date range, user, agent, event type, source, company, **Changes only**.
+- **Open session** shows the whole session in order (read-only), with its title, user, agent, source, schedule and start time.
+- **Open record** opens the changed record in its own form and company, subject to your own menu item security.
+- No business data is copied into the log beyond what identifies the record and the change.
 
 ### Background runs and the plan card
 
@@ -347,6 +371,17 @@ Buttons:
 
 A scheduled run gets the same rights as the owner in the chat: the same roles, company access and AI Bot user setup (tools, agents, tables). It can never write without a Confirm.
 
+### Activity log clean-up
+
+**Navigation:** RyvSoft AI > Periodic tasks > Clean up agent activity log
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| Retention (days) | 0 | Keep this many days of log. 0 = use **Retention (days)** from AI Bot parameters |
+
+- Schedule it once as a recurring batch job; then change the retention in AI Bot parameters only
+- When the retention in AI Bot parameters is 0 too, nothing is deleted
+
 ### Session Cleanup
 
 **Navigation:** RyvSoft AI > Periodic tasks > AI Bot session cleanup
@@ -369,8 +404,8 @@ Six duties come with RyvSoft AI; add them to roles of your choice.
 
 | Duty | For | Access |
 |------|-----|--------|
-| **AI Bot administrator duty** | Administrators | Configure the AI Bot: parameters, agents, user setup, schedules, knowledge base, MCP servers, user memories, batch jobs, data entities |
-| **AI Bot clerk duty** | Users | Use the chat; maintain their own My setup (default agent, memories) and their own AI workspace pages; read the configuration |
+| **AI Bot administrator duty** | Administrators | Configure the AI Bot: parameters, agents, user setup, schedules, knowledge base, MCP servers, user memories, batch jobs, data entities; read the agent activity log |
+| **AI Bot clerk duty** | Users | Use the chat; maintain their own My setup (default agent, memories) and their own AI workspace pages; read the configuration; use the knowledge base through the agent only |
 | **View the AI workspace** | Users who only look at workspace pages | Open the AI workspace |
 | **Maintain AI Reporting definitions** | Report designers | Create and change data sets, templates and reports; run them and see the run history |
 | **Run AI Reporting reports** | Report users | Run published reports |
@@ -382,12 +417,13 @@ Beyond role-based security, each user's access is controlled through their User 
 
 - **Tool Access** — enable/disable individual tools per user
 - **Agent Access** — control which agents a user can select
+- **Knowledge Access** — control which knowledge base documents the agent may use for the user (empty list = all)
 - **Table Access** — runtime-enforced table allow-list (an admin UI is planned)
 
 ### Data Protection
 
 - API keys are encrypted at rest and excluded from data entities
-- Chat sessions are private: each user sees only their own
+- Chat sessions are private: each user sees only their own; administrators see who did what in the agent activity log
 - Data entities exclude sensitive fields such as API keys and system prompts; the agents entity carries agent instructions and is for administrators only
 
 ---

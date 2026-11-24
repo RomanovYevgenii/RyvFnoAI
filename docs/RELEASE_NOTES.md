@@ -96,6 +96,10 @@ The agent can now run standard F&O (SSRS) reports and attach the result to the c
 - Saving a widget with joined data sources no longer overwrites a joined source.
 - Removed delivered templates are disabled instead of deleting the widgets users built from them.
 
+### AI Reporting: published reports keep their macros
+
+Publishing a report now freezes the formula macros it uses, including macros called by other macros, into the published version. Editing, disabling, or deleting a macro no longer changes the output of reports that are already published; Preview still uses the current macros, and the report shows that it has unpublished changes until it is published again. The help for the output file name now lists only the supported placeholders ({{ReportId}} and {{RunDate}}), and the unsupported file type message now includes CSV and Text.
+
 ### AI Reporting and AI workspace agents rebuilt as core plus skills
 
 The AI Reporting assistants and the AI workspace designer now keep a short core instruction and load the details only when needed: 12 reporting skills (datasets, SQL sources, formulas, variables and macros, Excel, XML/JSON and CSV/TXT templates, mappings, publish and derive, run and debug, e-invoice XML) and 9 workspace skills. Their instructions were checked against the product and corrected. Answers are more precise, and each request uses fewer tokens. Get them by importing the agent library file.

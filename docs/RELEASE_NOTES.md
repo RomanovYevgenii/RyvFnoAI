@@ -98,7 +98,7 @@ The agent can now run standard F&O (SSRS) reports and attach the result to the c
 
 ### AI Reporting: published reports keep their macros
 
-Publishing a report now freezes the formula macros it uses, including macros called by other macros, into the published version. Editing, disabling, or deleting a macro no longer changes the output of reports that are already published; Preview still uses the current macros, and the report shows that it has unpublished changes until it is published again. The help for the output file name now lists only the supported placeholders ({{ReportId}} and {{RunDate}}), and the unsupported file type message now includes CSV and Text.
+Publishing a report now freezes the formula macros it uses, including macros called by other macros, into the published version. Editing, disabling, or deleting a macro no longer changes the output of reports that are already published; Preview still uses the current macros, and the report shows that it has unpublished changes until it is published again. Reports that were published before this update and use macros show unpublished changes until they are published again, because their published version does not yet include the macros. The help for the output file name now lists only the supported placeholders ({{ReportId}} and {{RunDate}}), and the unsupported file type message now includes CSV and Text.
 
 ### AI Reporting and AI workspace agents rebuilt as core plus skills
 
@@ -109,8 +109,9 @@ The AI Reporting assistants and the AI workspace designer now keep a short core 
 1. Run a database synchronization (new fields and a new unique index on the access setup table, and a new table for shared workspace pages).
 2. To share workspace pages, give the privilege **Share AI workspace pages** to the roles that should share.
 3. To get the rebuilt AI Reporting and AI workspace agents, import the 1.5 agent library file (delivered with the subscription) with **Import library**, with **Preview only** first.
-4. Existing user rows keep their own lists, so AI Bot access does not change until you add Role rows or switch a user's **Use role access** to Yes.
-5. To move a team to role-based access: create a Role row for their role, fill its Tools and Agents tabs, check the **Effective access** tab of one user, then set **Use role access** = Yes on the users' own rows (or delete those rows).
+4. Publish again the AI Reporting reports that use macros, so that their published version includes the macros.
+5. Existing user rows keep their own lists, so AI Bot access does not change until you add Role rows or switch a user's **Use role access** to Yes.
+6. To move a team to role-based access: create a Role row for their role, fill its Tools and Agents tabs, check the **Effective access** tab of one user, then set **Use role access** = Yes on the users' own rows (or delete those rows).
 
 ## 1.4.0.1 (November 2026)
 

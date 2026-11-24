@@ -22,6 +22,13 @@ You no longer need a setup row for every user. Give tools, agents, tables and kn
 | Exists, **Use role access** = No | The user's own lists decide, exactly as in 1.4. Every existing row works this way after the upgrade |
 | Exists, **Use role access** = Yes, or no own row | The Role rows of all roles the user holds are combined |
 
+**A user row and Role rows are never mixed.** Access always comes from one place, so you can always tell where it came from:
+
+- A user with their own row and **Use role access** = No gets only that row's lists, even if they also hold roles that have Role rows. Their roles add nothing.
+- With **Use role access** = Yes the roles decide; the user's row adds no tools, agents, tables or documents. It keeps only the user's personal settings: model connection, MCP credentials, memories and default agent.
+- **Enabled** = No on the user's own row blocks that user in both cases, even when their roles would give access. Use it to stop one person without changing their roles.
+- To give one user a little more than their role, create a role for the extra access, set up a Role row for it and assign that role to the user.
+
 When roles are combined:
 
 - **Tools and agents:** the union of what the roles list. A role that lists no tools or agents gives none, so an empty role never opens everything.

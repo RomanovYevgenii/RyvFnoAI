@@ -77,7 +77,7 @@ Use **Enable selected** / **Disable selected** to switch several tools at once. 
 
 **Role rows.** Every user who holds the role gets what the row lists; if the role is assigned to the user for some companies only, its agents work only in those companies. A role that lists no tools or agents gives none. **Priority** decides whose default agent a user gets when several of their roles have one (lowest number wins). The **Users with this role** tab shows who holds the role and where. A system administrator may set up any role; other users only the roles they hold.
 
-**User rows.** With **Use role access** = No the row's own lists decide and the user's roles are ignored. With **Use role access** = Yes the roles decide, and the row only keeps the user's personal settings (connection, memories, default agent). The **Effective access** tab shows the result and where each line comes from.
+**User rows.** With **Use role access** = No the row's own lists decide and the user's roles are ignored. With **Use role access** = Yes the roles decide, and the row only keeps the user's personal settings (connection, memories, default agent). A user row and Role rows are never combined: access comes from one or the other. **Enabled** = No on the user's own row blocks the user in both cases. To give one user more than their role, give them an extra role with its own Role row. The **Effective access** tab shows the result and where each line comes from.
 
 **Connection tab** (User rows only): a user can get their own model connection instead of the system one. Set **Use custom connection** and fill in **Connection settings** (provider, endpoint, key, model); otherwise the settings in AI Bot parameters apply.
 

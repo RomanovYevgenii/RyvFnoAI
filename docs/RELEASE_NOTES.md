@@ -1,5 +1,48 @@
 # RyvSoft AI — Release Notes
 
+## 1.5.0.3 (November 2026)
+
+### AI Bot access by security role
+
+You no longer need a setup row for every user. Give tools, agents, tables and knowledge base documents to a **security role** once, and every user who holds the role gets them. New employees get access as soon as they get the role, and a user who changes jobs gets the access of their new role.
+
+**Navigation:** RyvSoft AI > Setup > AI Bot access setup (formerly *User setup*)
+
+- **One list, two kinds of rows:** **User** rows (as before) and **Role** rows. Use **Show: All / Users / Roles** to filter.
+- **New** opens a short dialog: choose the **Setup type**, then the user or the security role. The role lookup lists only roles that have no access setup yet.
+- **Both kinds have the same tabs:** Tools, Agents, Tables, Knowledge, with **Set as default** on the Agents tab. Connection and Memory stay on User rows only: a model connection or an MCP credential belongs to one person and is never shared through a role.
+- **Effective access** tab on a User row: the tools, agents, tables and documents the user really gets, which row each one comes from, and in which companies.
+- **Users with this role** tab on a Role row: who holds the role and for which companies.
+- **Tables** tab: the table allow-list now has its own tab, for users and for roles.
+
+**How a user's access is decided**
+
+| User's own row | Result |
+|---|---|
+| Exists, **Use role access** = No | The user's own lists decide, exactly as in 1.4. Every existing row works this way after the upgrade |
+| Exists, **Use role access** = Yes, or no own row | The Role rows of all roles the user holds are combined |
+
+When roles are combined:
+
+- **Tools and agents:** the union of what the roles list. A role that lists no tools or agents gives none, so an empty role never opens everything.
+- **Companies:** an agent that comes from a role assigned for some companies only (a role assignment with organizations) works only in those companies. In other companies it is not offered, and a direct request is refused.
+- **Tables and knowledge:** if any of the user's roles has no list, the user is not restricted; otherwise the union of the lists applies.
+- **Default agent:** the user's own choice in My setup while it is still allowed; otherwise the default of the role with the lowest **Priority** number.
+- The agent's own tool list and every F&O security check still apply. A Role row never gives a right the user does not have in F&O.
+- Role assignments that are disabled or outside their valid dates are ignored. A change to a user's roles takes effect within 5 minutes; a change in AI Bot access setup takes effect immediately.
+
+**Who may set up roles:** a system administrator may set up any role. Anyone else with access to the form may set up only the roles they hold themselves; on other roles' rows the line buttons are disabled.
+
+**New security role:** **AI Bot access administrator** maintains AI Bot access setup, without the rest of the AI Bot administration.
+
+**Activity log:** a refused request is logged with the reason, for example *no access setup for the user or any of their roles* or *agent X is not allowed in company Y*.
+
+### Upgrade steps
+
+1. Run a database synchronization (new fields and a new unique index on the access setup table).
+2. Nothing else is required. Existing user rows keep their own lists, so behavior does not change until you add Role rows or switch a user's **Use role access** to Yes.
+3. To move a team to role-based access: create a Role row for their role, fill its Tools and Agents tabs, check the **Effective access** tab of one user, then set **Use role access** = Yes on the users' own rows (or delete those rows).
+
 ## 1.4.0.1 (November 2026)
 
 ### Agent activity log: who did what

@@ -60,24 +60,28 @@ The **Activity log** tab sets the [agent activity log](#agent-activity-log): **L
 |-------|-------------|
 | Workspace ID | Organization workspace (for org-level API keys) |
 
-### Step 2: User Setup
+### Step 2: Access Setup
 
-**Navigation:** RyvSoft AI > Setup > User setup
+**Navigation:** RyvSoft AI > Setup > AI Bot access setup
 
-Each user who will use the AI Bot needs a setup record.
+Access is given to a **user** or to a **security role**. Every user who will use the AI Bot needs either a User row or at least one role with a Role row.
 
-1. Click **New** to create a record — UserId defaults to the current user
+1. Click **New**, choose the **Setup type** (User or Role), then the user or the security role, and click **OK**
 2. Set **Enabled** = Yes
 3. **Tools tab** — click **Add tool**, select tools from lookup, enable/disable individually
-4. **Agents tab** — click **Add agent**, select agents from lookup, enable/disable individually
-5. **Knowledge tab** — the knowledge base documents this user may use. Empty list: every document. With rows: only the enabled ones; a document added later must be added here. **Initialize documents** adds every document the user does not have yet
-6. Table-level restrictions are enforced at runtime (an admin UI for the table allow-list is planned)
+4. **Agents tab** — click **Add agent**, select agents from lookup, enable/disable individually; **Set as default** marks the default agent
+5. **Tables tab** — the tables the AI may read for this user or role. Empty list: every table the user's F&O rights allow
+6. **Knowledge tab** — the knowledge base documents this user or role may use. Empty list: every document. With rows: only the enabled ones; a document added later must be added here. **Initialize documents** adds every document not in the list yet
 
-Use **Enable selected** / **Disable selected** to switch several tools at once. **Initialize Tools** and **Initialize Agents** in the action pane reset the user's tool or agent list to everything available.
+Use **Enable selected** / **Disable selected** to switch several tools at once. **Initialize Tools** and **Initialize Agents** in the action pane fill the tool or agent list with everything available.
 
-**Connection tab:** a user can get their own model connection instead of the system one. Set **Use custom connection** and fill in **Connection settings** (provider, endpoint, key, model); otherwise the settings in AI Bot parameters apply.
+**Role rows.** Every user who holds the role gets what the row lists; if the role is assigned to the user for some companies only, its agents work only in those companies. A role that lists no tools or agents gives none. **Priority** decides whose default agent a user gets when several of their roles have one (lowest number wins). The **Users with this role** tab shows who holds the role and where. A system administrator may set up any role; other users only the roles they hold.
 
-**Memory tab:** what the agent remembers about this user (see [Memory](#use-memory)).
+**User rows.** With **Use role access** = No the row's own lists decide and the user's roles are ignored. With **Use role access** = Yes the roles decide, and the row only keeps the user's personal settings (connection, memories, default agent). The **Effective access** tab shows the result and where each line comes from.
+
+**Connection tab** (User rows only): a user can get their own model connection instead of the system one. Set **Use custom connection** and fill in **Connection settings** (provider, endpoint, key, model); otherwise the settings in AI Bot parameters apply.
+
+**Memory tab** (User rows only): what the agent remembers about this user (see [Memory](#use-memory)).
 
 **Alternative:** Run the **Initialize AI Bot user setup** batch job (RyvSoft AI > Periodic tasks) to auto-create the current user's setup with all tools and agents pre-populated.
 
@@ -193,7 +197,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. Everythin
 | **AI Bot parameters** | Setup | Global configuration: provider, API keys, RAG settings |
 | **Agents** | Setup | Define AI personas with custom instructions and tool permissions |
 | **AI Bot schedules** | Setup | Run an agent on a schedule or on demand through the batch queue (see [Scheduled agent runs](#scheduled-agent-runs)) |
-| **User setup** | Setup | Per-user tool, agent and connection settings (administrators) |
+| **AI Bot access setup** | Setup | Tools, agents, tables and knowledge per user or per security role; per-user connection settings (administrators) |
 | **My setup** | Setup | Your own default agent and memories |
 | **User memories** | Setup | What the agent remembers, for all users (administrators) |
 | **Knowledge base** | Setup | Manage and index documents for RAG |
@@ -411,14 +415,16 @@ Six duties come with RyvSoft AI; add them to roles of your choice.
 | **Run AI Reporting reports** | Report users | Run published reports |
 | **AI Bot external access** | The F&O user of an external system | Call the agent through the [External API](EXTERNAL_API.md) |
 
-### User-Level Controls
+RyvSoft AI also ships the security role **AI Bot access administrator**, which maintains AI Bot access setup only.
 
-Beyond role-based security, each user's access is controlled through their User Setup record:
+### User- and Role-Level Controls
 
-- **Tool Access** — enable/disable individual tools per user
-- **Agent Access** — control which agents a user can select
-- **Knowledge Access** — control which knowledge base documents the agent may use for the user (empty list = all)
-- **Table Access** — runtime-enforced table allow-list (an admin UI is planned)
+Beyond F&O security, what the AI may do for a user is controlled in AI Bot access setup, by the user's own row or by the Role rows of the security roles they hold:
+
+- **Tool Access** — enable/disable individual tools
+- **Agent Access** — control which agents a user can select; on a Role row, only in the companies the role is assigned for
+- **Table Access** — table allow-list (empty list = every table the user's F&O rights allow)
+- **Knowledge Access** — control which knowledge base documents the agent may use (empty list = all)
 
 ### Data Protection
 
@@ -433,12 +439,12 @@ Beyond role-based security, each user's access is controlled through their User 
 | Issue | Solution |
 |-------|----------|
 | "AI Bot is not configured" | Set all required fields in AI Bot Parameters: Provider, Endpoint URL, API Key, Model ID |
-| AI Bot not appearing on forms | Check: Enable AI Bot = Yes, User Setup exists with Enabled = Yes, user has the AI Bot clerk duty or AI Bot administrator duty |
+| AI Bot not appearing on forms | Check: Enable AI Bot = Yes, AI Bot access setup has an enabled User row for the user or an enabled Role row for one of their roles, user has the AI Bot clerk duty or AI Bot administrator duty. The agent activity log shows the reason for a refused request |
 | "Tools and agents initialized for 0 user(s)" | Run the Initialize batch job as the user who needs access |
-| "Access denied to agent: X" | Add the agent to the user's Agent Access in User Setup |
+| "Access denied to agent: X" | Add the agent to the Agents tab of the user's row or of one of their roles in AI Bot access setup. If the agent works in one company but not in another, the role that gives it is assigned for some companies only |
 | MCP tools not in Add Tool lookup | Verify MCP server is Enabled, click Sync Tools, verify individual tools are Enabled |
 | Chat session not loading | Clean up old sessions via Session Cleanup batch job |
-| Tool execution errors | Check: table access granted, tool enabled for the user (User setup > Tools) and for the agent (Agents > Tools) |
+| Tool execution errors | Check: table access granted, tool enabled for the user or their role (AI Bot access setup > Tools) and for the agent (Agents > Tools) |
 | The agent says the label index is not built or out of date | Run **Refresh label index** in AI Bot parameters > Additional configuration |
 | The model answer times out | Raise **Model response timeout (seconds)** in AI Bot parameters |
 | No AI block or action widget in the workspace palette | Set **Enable preview widget types** in AI Bot parameters > Additional configuration |

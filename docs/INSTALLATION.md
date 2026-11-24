@@ -44,8 +44,8 @@ Add the duties to roles of your choice:
 
 ## 4. Initialize users
 
-**RyvSoft AI → Periodic tasks → Initialize AI Bot user setup** — creates the user setup with all tools and agents.
-Then review **RyvSoft AI → Setup → User setup** and narrow down tools, agents and knowledge base documents per user.
+**RyvSoft AI → Periodic tasks → Initialize AI Bot user setup** — creates the current user's access setup with all tools and agents.
+Then open **RyvSoft AI → Setup → AI Bot access setup** and give tools, agents, tables and knowledge base documents per user, or once per security role for everyone who holds it.
 
 The same job switches on the agent activity log with its defaults (log on, request text stored, 365 days) if nobody has set it yet. Schedule **RyvSoft AI → Periodic tasks → Clean up agent activity log** as a recurring batch job so the log is kept to its retention. Upgrading from an earlier build? See the [release notes](RELEASE_NOTES.md).
 

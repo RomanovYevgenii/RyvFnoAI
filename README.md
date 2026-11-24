@@ -9,7 +9,7 @@
 ![Platform](https://img.shields.io/badge/platform-Dynamics%20365%20F%26O-0078D4)
 [![Microsoft AppSource](https://img.shields.io/badge/Microsoft%20AppSource-available-0078D4)](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
-![Version](https://img.shields.io/badge/version-1.4.0--beta-blue)
+![Version](https://img.shields.io/badge/version-1.5.0--beta-blue)
 ![Providers](https://img.shields.io/badge/LLM-Anthropic%20Claude%20(tested)%20%7C%20OpenAI%20(tested)%20%7C%20Azure%20OpenAI%20(preview)-6E40C9)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 

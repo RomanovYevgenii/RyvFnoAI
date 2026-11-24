@@ -44,11 +44,69 @@ When roles are combined:
 
 **Activity log:** a refused request is logged with the reason, for example *no access setup for the user or any of their roles* or *agent X is not allowed in company Y*.
 
+### Agent library: export and import as JSON
+
+Move agents and skills between environments as one file, with full instruction texts of any length. Data management (DMF) text imports cut a text field at 32,768 characters, so a long agent instruction could arrive cut off; the library file has no such limit. The DMF entities are still there and work as before.
+
+**Navigation:** RyvSoft AI > Periodic tasks > Agent library > **Export library** / **Import library**, or the **Library** tab on the Agents and Skills forms.
+
+- **Export library** writes all shared agents (with their tools and skill links) and all skills (with their required tools) to one UTF-8 JSON file. Run in batch, the file is attached to the batch job.
+- **Import library** checks the whole file before it writes anything. It creates what is missing and updates what exists, by agent ID and skill ID, in one transaction. It never deletes, and it skips rows that have not changed.
+- **Preview only** shows what the import would change, without writing anything. Run it first.
+- **Rights:** export is in the agent and skill View and Maintain privileges, import only in Maintain.
+
+### Initialize Knowledge runs in batch
+
+**Initialize Knowledge** (the AI writes the environment knowledge from your metadata) can take several minutes. It is now a batch job and runs in batch by default, so nobody has to keep a session open. It is also under RyvSoft AI > Periodic tasks.
+
+### Standard F&O reports from the agent
+
+The agent can now run standard F&O (SSRS) reports and attach the result to the chat as PDF, Excel, Word or CSV, for example *"send me the customer aging report for USMF as Excel"*. It works in the chat and in batch runs.
+
+- The report runs with the user's own rights: the user needs access to the report's menu item, and F&O security applies as for a report started from the menu.
+- The agent fills the report's parameters and ranges by name. If a parameter is unknown or the report refuses to run, the agent gets the reason and can correct the request.
+- There is no new tool to grant: reports go through the existing file export tool (`start_export`).
+
+### AI workspace
+
+**Share pages.** A page owner can share a page with users, security roles or everyone, from the new **Access** panel. Viewers find it in their launcher read-only and see only the data their own rights allow. A viewer can **make a copy** to change it. Sharing needs the new privilege **Share AI workspace pages**.
+
+**Buttons.** A new Button widget can:
+
+- open a form or report with the record selected in another widget, also in another company;
+- ask the agent in a new chat, with fields of the selected record filled into the question;
+- export a widget to CSV (all rows, not only the visible page);
+- go to another page, open a web link, or refresh the page.
+
+**New widgets:**
+
+- **Trend** by day, week, month, quarter or year; periods with no data show as zero.
+- **Pie / donut.**
+- **Pivot** with heat map and totals.
+- **Record card** with totals from related data.
+- **KPI** gains a period, the change against the previous period, a sparkline and a target.
+
+**Click to filter.** Clicking a bar, a slice or a pivot cell now filters the linked widgets by that value.
+
+**Fixes:**
+
+- F&O table rights are checked for every table a widget reads, and record level security always applies.
+- A KPI counts all rows; grouping without a measure counts rows.
+- With nothing selected in the driving widget, a linked widget shows a message instead of filtering on a blank value.
+- Saving a widget with joined data sources no longer overwrites a joined source.
+- Removed delivered templates are disabled instead of deleting the widgets users built from them.
+
+### AI Reporting and AI workspace agents rebuilt as core plus skills
+
+The AI Reporting assistants and the AI workspace designer now keep a short core instruction and load the details only when needed: 12 reporting skills (datasets, SQL sources, formulas, variables and macros, Excel, XML/JSON and CSV/TXT templates, mappings, publish and derive, run and debug, e-invoice XML) and 9 workspace skills. Their instructions were checked against the product and corrected. Answers are more precise, and each request uses fewer tokens. Get them by importing the agent library file.
+
 ### Upgrade steps
 
-1. Run a database synchronization (new fields and a new unique index on the access setup table).
-2. Nothing else is required. Existing user rows keep their own lists, so behavior does not change until you add Role rows or switch a user's **Use role access** to Yes.
-3. To move a team to role-based access: create a Role row for their role, fill its Tools and Agents tabs, check the **Effective access** tab of one user, then set **Use role access** = Yes on the users' own rows (or delete those rows).
+1. Run a database synchronization (new fields and a new unique index on the access setup table, and a new table for shared workspace pages).
+2. To share workspace pages, give the privilege **Share AI workspace pages** to the roles that should share.
+3. To get the rebuilt AI Reporting and AI workspace agents, import the 1.5 agent library file (delivered with the subscription) with **Import library**, with **Preview only** first.
+4. Existing user rows keep their own lists, so AI Bot access does not change until you add Role rows or switch a user's **Use role access** to Yes.
+5. To move a team to role-based access: create a Role row for their role, fill its Tools and Agents tabs, check the **Effective access** tab of one user, then set **Use role access** = Yes on the users' own rows (or delete those rows).
 
 ## 1.4.0.1 (November 2026)
 

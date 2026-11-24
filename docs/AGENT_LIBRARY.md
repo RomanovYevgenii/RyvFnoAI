@@ -1,6 +1,6 @@
 # Agent Library
 
-Ready-made RyvSoft AI agents for Dynamics 365 Finance & Operations. The package for release 1.4 holds 16 agents: eight for finance and operations work, Agent Architect, and seven that work with the AI workspace and AI Reporting. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. The library is included in the RyvSoft AI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
+Ready-made RyvSoft AI agents for Dynamics 365 Finance & Operations. The package for release 1.4 holds 16 agents: eight for finance and operations work, Agent Architect, and seven that work with the AI workspace and AI Reporting. Each agent is a set of instructions plus the tools it may use, delivered as a data package and imported through **Data management**. From release 1.5 the library is also delivered as one JSON file, imported with **RyvSoft AI > Periodic tasks > Agent library > Import library**, which carries instructions of any length. The library is included in the RyvSoft AI subscription; configuring the agents for a customer's own processes (policies, thresholds, report layouts, knowledge base) is part of the implementation.
 
 Every agent runs under the signed-in user's F&O security: it sees and changes only what the user can see and change. Agents marked **writes** prepare changes as a preview, and nothing is saved until the user clicks **Confirm** in the panel.
 

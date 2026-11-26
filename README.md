@@ -17,7 +17,7 @@
 
 🛒 **Now available on Microsoft AppSource:** [RyvSoft AI on Microsoft AppSource](https://marketplace.microsoft.com/en-us/product/ryvsoft.ryvsoft-ai)
 
-🌐 **Product page:** [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
+🌐 **Product page:** [ryvsoft.com/ryvsoft-ai](https://ryvsoft.com/ryvsoft-ai/) · [What's new](https://ryvsoft.com/ryvsoft-ai/whats-new/) · ✉️ [yevgenii@ryvsoft.com](mailto:yevgenii@ryvsoft.com)
 
 🔗 **RyvSoft on LinkedIn:** [linkedin.com/company/ryvsoft](https://www.linkedin.com/company/ryvsoft/)
 
@@ -161,6 +161,8 @@ Build an F&O page by describing each block in plain words — no developer neede
 - **You see real rows first** — nothing is saved until you have seen and accepted the rows the block will show.
 - **Not everything needs AI** — classic KPI tiles and grids sit on the same page.
 - **Linked blocks (new in 1.3)** — select a row in one block and the blocks linked to it show that record's data (master–detail).
+- **New cards (1.5)** — trend by day, week, month, quarter or year; pie and donut; pivot with heat map and totals; KPI with period, change, sparkline and target; record card with totals. Click a bar, slice or pivot cell and the linked blocks filter to it.
+- **Buttons and sharing (1.5)** — buttons open the selected record in its form, ask the agent about it in a new chat or export a grid to CSV. A page can be shared with users, a security role or everyone; viewers see it read-only with their own data rights and can make a copy.
 - **Same security as F&O** — every block reads with the user's own permissions and company access, cloud or on-premises.
 - **Preview switches** — AI blocks and action buttons are preview features; an administrator turns them on in the AI Bot parameters.
 
@@ -217,7 +219,7 @@ See [External API](docs/EXTERNAL_API.md).
 
 ## Agent Library
 
-Sixteen ready-made agents, imported through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant**, **Ledger Trail & Reconciliation** and **F&O Helpdesk**, each with its reports; **Agent Architect**, which helps your administrators design an agent for your own process; and agents for the AI workspace and AI Reporting (**AI Block Setup**, **AI Workspace Designer**, **AI Reporting Designer**, **AI Reporting Assistant** and three read-only helpers). See the [Agent Library](docs/AGENT_LIBRARY.md).
+Sixteen ready-made agents, imported as one library file (**Periodic tasks > Agent library > Import library**) or through Data management: **Credit & Collections**, **AP Invoice Check**, **Master Data Quality**, **Sales Order Desk**, **Inventory**, **Period Close Assistant**, **Ledger Trail & Reconciliation** and **F&O Helpdesk**, each with its reports; **Agent Architect**, which helps your administrators design an agent for your own process; and agents for the AI workspace and AI Reporting (**AI Block Setup**, **AI Workspace Designer**, **AI Reporting Designer**, **AI Reporting Assistant** and three read-only helpers). See the [Agent Library](docs/AGENT_LIBRARY.md).
 
 ## Licensing
 
@@ -266,8 +268,8 @@ The [installation guide](docs/INSTALLATION.md) describes how a build is deployed
 
 ## Roadmap
 
+- **AI Flows** — Logic Apps–style automation inside F&O: triggers (for example after a sales invoice is posted, on a schedule or from your own X++), F&O data and operations, conditions, loops, parallel branches, approvals, e-mail, HTTP and AI blocks; draw a flow or describe it and let the agent build it. In development; [ask for early access](mailto:yevgenii@ryvsoft.com?subject=AI%20Flows%20early%20access).
 - More agents in the [Agent Library](docs/AGENT_LIBRARY.md) (tax reporting preparation, bank reconciliation)
-- Admin UI for per-table access lists
 - Microsoft Teams front-end
 - Usage analytics and cost dashboard per user / agent
 

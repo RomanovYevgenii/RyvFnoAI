@@ -94,7 +94,8 @@ It is not a chatbot bolted onto an export. It runs natively in X++, next to your
 | Reports in your own templates (Excel, XML, JSON, CSV, text), run from the record's form | 🧪 AI Reporting (preview) |
 | Company knowledge (policies, procedures, manuals) | ✅ Knowledge base with semantic search |
 | Posting, workflow submission, number sequences | 🧪 Multi-step operations, guided by the knowledge base |
-| Attachments on F&O records (DocuRef upload / read), SSRS report output | 🗺 Roadmap |
+| Standard F&O (SSRS) reports as PDF, Excel, Word or CSV, in the chat or in batch | ✅ With the user's own rights on the report |
+| Attachments stored on F&O records (read a PDF attached to an invoice, attach a file to a record) | 🗺 Roadmap |
 | Your own tools | ✅ X++ extension point or MCP servers |
 
 ✅ available · 🧪 working, being validated · 🗺 planned

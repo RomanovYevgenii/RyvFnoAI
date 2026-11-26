@@ -114,7 +114,7 @@ For administrators. Helps design a new agent, or adapt a library agent, for your
 |---|---|---|
 | **AI Block Setup** | Prepares AI blocks in the [AI workspace](FUNCTIONAL_GUIDE.md#ai-workspace); select it on every AI block | The block's stored query |
 | **AI Workspace Designer** | Designs and reviews AI workspace pages | – |
-| **AI Reporting Designer** | Explains, debugs and runs [AI Reporting](FUNCTIONAL_GUIDE.md#ai-reporting-preview) reports | Report setup, with Confirm |
+| **AI Reporting Designer** | Explains, debugs and runs [AI Reporting](FUNCTIONAL_GUIDE.md#ai-reporting) reports | Report setup, with Confirm |
 | **AI Reporting Assistant** | Builds an AI Reporting report end to end, for example an e-invoice format | Report setup, with Confirm |
 | **Report field finder**, **Report SQL tester**, **Report run reader** | Read-only helpers the AI Reporting Designer asks for exact tables and fields, SQL tests and run messages | – |
 

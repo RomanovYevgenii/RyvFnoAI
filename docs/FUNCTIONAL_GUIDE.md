@@ -190,7 +190,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. Everythin
 |------|-------|---------|
 | **AI Bot** | Settings (gear) menu | Chat side panel — type messages, receive AI responses, use tools; can read the open form and selected record |
 | **AI workspace** | Workspaces | Your own pages built from F&O data (see [AI workspace](#ai-workspace)) |
-| **Reports** | AI Reporting (Preview) | Reports that fill your own templates (see [AI Reporting](#ai-reporting-preview)); data sets, templates and macros are under **Advanced** |
+| **Reports** | AI Reporting | Reports that fill your own templates (see [AI Reporting](#ai-reporting)); data sets, templates and macros are under **Advanced** |
 | **Runs** | Inquiries and reports | Every AI Reporting run with the file it produced |
 | **Chat sessions** | Inquiries and reports | Your conversation history |
 | **Agent activity log** | Setup | Who did what through the agent, for all users (administrators); see [Agent activity log](#agent-activity-log) |
@@ -302,9 +302,9 @@ The AI workspace lets each user build their own F&O pages from blocks: data grid
 
 ---
 
-## AI Reporting (preview)
+## AI Reporting
 
-**Navigation:** RyvSoft AI > AI Reporting (Preview) > Reports
+**Navigation:** RyvSoft AI > AI Reporting > Reports
 
 AI Reporting fills your own file templates with F&O data: Excel workbooks, XML, JSON, CSV and text files. A report brings together three parts, all reachable from the report:
 

@@ -43,7 +43,7 @@ RyvSoft AI adds an AI-powered assistant to Dynamics 365 Finance & Operations. Us
 
 The **Connection** tab also has **Test Connection** to check the provider settings, the limits for [scheduled runs](#scheduled-agent-runs), and **Allow script injection** (leave it off unless you trust the model to script forms through the task recorder).
 
-The **Knowledge** tab holds **Initialize Knowledge**, which scans your environment's metadata into instructions for the agent (with **Include standard models in scan** to cover Microsoft models too). The **Additional configuration** tab holds **Enable preview widget types** (see [AI workspace](#ai-workspace-preview)), **Refresh label index** (see [Label index](#step-5-label-index)) and the switches for the [External API](EXTERNAL_API.md).
+The **Knowledge** tab holds **Initialize Knowledge**, which scans your environment's metadata into instructions for the agent (with **Include standard models in scan** to cover Microsoft models too). The **Additional configuration** tab holds **Enable preview widget types** (see [AI workspace](#ai-workspace)), **Refresh label index** (see [Label index](#step-5-label-index)) and the switches for the [External API](EXTERNAL_API.md).
 
 The **Activity log** tab sets the [agent activity log](#agent-activity-log): **Log agent activity**, **Store request text** (tell your employees that their requests are logged) and **Retention (days)** (default 365; 0 = keep for ever).
 
@@ -189,7 +189,7 @@ The chat (**AI Bot**) opens from the settings (gear) menu on any page. Everythin
 | Form | Where | Purpose |
 |------|-------|---------|
 | **AI Bot** | Settings (gear) menu | Chat side panel — type messages, receive AI responses, use tools; can read the open form and selected record |
-| **AI workspace** | Workspaces | Your own pages built from F&O data (see [AI workspace](#ai-workspace-preview)) |
+| **AI workspace** | Workspaces | Your own pages built from F&O data (see [AI workspace](#ai-workspace)) |
 | **Reports** | AI Reporting (Preview) | Reports that fill your own templates (see [AI Reporting](#ai-reporting-preview)); data sets, templates and macros are under **Advanced** |
 | **Runs** | Inquiries and reports | Every AI Reporting run with the file it produced |
 | **Chat sessions** | Inquiries and reports | Your conversation history |
@@ -292,13 +292,13 @@ When a background run will change data, the agent first shows a **plan card**: t
 
 ---
 
-## AI workspace (preview)
+## AI workspace
 
 **Navigation:** RyvSoft AI > Workspaces > AI workspace
 
 The AI workspace lets each user build their own F&O pages from blocks: data grids, KPI and number tiles, bar charts, work lists, text and quick links. Describe a block in plain words, check the real rows it returns and accept it; from then on it runs from live data with your own permissions. Blocks can be linked, so selecting a row in one block filters the blocks linked to it.
 
-**AI blocks** (the agent writes the answer or prepares the query) and **action widgets** (a button that runs a tool) are preview features. They are hidden until an administrator sets **Enable preview widget types** in **AI Bot parameters > Additional configuration**. An action widget never writes without confirmation.
+**AI blocks** (the agent writes the answer or prepares the query) and **action widgets** (a button that runs a tool) are off by default. They are hidden until an administrator sets **Enable preview widget types** in **AI Bot parameters > Additional configuration**. An action widget never writes without confirmation.
 
 ---
 
